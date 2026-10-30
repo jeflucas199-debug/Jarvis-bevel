@@ -58,6 +58,7 @@ Itens com `[a confirmar]` dependem de resposta do Lucas/sócios.
 | 23 | Vitor passar o contato da empresa de engenharia | VT | [[Empresa-de-Engenharia]] |
 | 24 | Pedir ao Júnior as 10+ apresentações | Lucas | [[Interativos]] |
 | 27 | Reunião com o pai do Gabe (motivo `[a confirmar]`) | Lucas | até 06/11 · [[Morais-Barbershop]] |
+| 31 | **GitHub privado do cofre + Jarvis (30/10):** tudo pronto e salvo localmente; falta o Lucas dar **dois cliques em `jarvis-bevel/Enviar para o GitHub.command`** e, na 1ª vez, entrar com o **token** do GitHub (passo a passo no LEIA-ME). Depois: convidar VT, Du, Zé e Gui como colaboradores e decidir se vale um site na **Vercel com senha** para o time | Lucas | [[Jarvis-Bevel]] |
 | 30 | ~~Jarvis + Google Drive~~ — atalho criado e testado em 29/10. Só falta **reabrir o Jarvis uma vez** (Abrir Jarvis.command) para o do dia a dia pegar | Lucas | [[Jarvis-Bevel]] |
 | 29 | **Jarvis + CRM ligado (28/10).** Falta: pedir ao Gui para **trocar a senha** do usuário de leitura (passou pelo chat) e colar a nova no `.env` do Jarvis | Lucas / Gui | [[Jarvis-Bevel]] · [[CRM-Bevel]] |
 

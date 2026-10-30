@@ -59,6 +59,18 @@ Os documentos ficam na pasta `jarvis-bevel/documentos` (o PDF fica onde você sa
 4. Pergunte: "vê na pasta da Ortech no Drive se o Zé colocou os documentos do Guto".
 Ele só lê: o que for importante vira resumo numa nota do cofre. Google Docs/Planilhas aparecem só como atalho (peça em PDF).
 
+## GitHub (cópia privada do cofre e do Jarvis)
+Tudo da pasta **bevel** (notas, `_arquivo/` com PDFs e atas, configuração do Obsidian) e do **jarvis-bevel** vai para
+https://github.com/jeflucas199-debug/Jarvis-bevel (privado). **Nunca vão:** o `.env` (acesso ao CRM e chaves), `node_modules/` e `data/`.
+- **Enviar:** dois cliques em **`Enviar para o GitHub.command`** (pasta jarvis-bevel). Ele junta as mudanças e envia.
+- **Primeira vez** o Terminal pede usuário e senha: usuário `jeflucas199-debug`; senha = um **token** (o GitHub não aceita a senha normal):
+  1. github.com → foto → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
+  2. Nome "Mac do Lucas", validade 1 ano, **Repository access: Only select repositories → Jarvis-bevel**.
+  3. **Permissions → Repository permissions → Contents: Read and write**. **Generate** e copie.
+  4. Cole no Terminal quando pedir a senha (não aparece nada enquanto cola; é normal) e Enter. O Mac guarda; das próximas vezes não pede.
+- **Time ver:** no GitHub, **Settings → Collaborators → Add people** (VT, Du, Zé, Gui). Eles leem as notas direto no site.
+- Por dentro: o histórico fica em `~/.bevel-github` e cobre só essas duas pastas da Mesa.
+
 ## Temas
 
 **Não precisa dizer o tema:** fale normalmente ("a Gabriele respondeu", "o Gui terminou a coluna Atrasado") e o Jarvis escolhe sozinho.
