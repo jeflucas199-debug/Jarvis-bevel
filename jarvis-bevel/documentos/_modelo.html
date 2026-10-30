@@ -1,0 +1,122 @@
+<!doctype html>
+<!--
+  MODELO DE DOCUMENTO DA BEVEL (brandkit v1 — 06-Marketing/Identidade-Visual.md).
+  Para criar um documento: copie este arquivo inteiro para documentos/AAAA-MM-DD-nome-curto.html,
+  troque o <title>, a capa e o conteúdo dentro de <main>. Não mexa no <style> nem na barra de cima.
+  Componentes disponíveis: .secao, .numeros/.numero, table, .cartoes/.cartao, .etiqueta (.verde .amarela .vermelha), .nota.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Título do documento · Bevel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #020b1e; --azul: #0062fc; --azul-escrita: #4895f6; --tinta: #161618;
+    --gelo: #e4ebf7; --mudo: #566074; --borda: #d3dcec; --branco: #fff;
+  }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; background: #c9d3e6; color: var(--tinta); font: 400 14px/1.6 Inter, system-ui, sans-serif; }
+  h1, h2, h3 { font-family: "Plus Jakarta Sans", Inter, sans-serif; letter-spacing: -0.03em; line-height: 1.1; }
+
+  /* Barra de ações (some na impressão) */
+  .barra { position: sticky; top: 0; z-index: 2; display: flex; justify-content: center; gap: 12px; padding: 12px; background: var(--navy); }
+  .barra button { font: 600 14px Inter, sans-serif; color: #fff; background: var(--azul); border: 0; border-radius: 12px; padding: 10px 18px; cursor: pointer; }
+  .barra span { color: #b9c8e6; font-size: 13px; align-self: center; }
+
+  /* Página A4 */
+  .pagina { width: 210mm; min-height: 297mm; margin: 24px auto; background: var(--branco); box-shadow: 0 10px 40px rgba(2, 11, 30, 0.25); }
+  .capa {
+    padding: 22mm 18mm 16mm; color: #fff;
+    background:
+      radial-gradient(55% 80% at 90% 20%, rgba(0, 98, 252, 0.55), transparent 70%),
+      linear-gradient(135deg, #010d21 0%, #021d55 55%, #0a42c8 100%);
+  }
+  .capa .logo { height: 34px; display: block; margin-bottom: 18mm; }
+  .capa .rotulo { color: #bfd6ff; }
+  .capa h1 { font-size: 38px; font-weight: 800; margin: 8px 0 10px; }
+  .capa p { color: #cbd9f2; margin: 0; max-width: 140mm; }
+  main { padding: 12mm 18mm 18mm; }
+  .rotulo { font: 600 11px Inter, sans-serif; text-transform: uppercase; letter-spacing: 0.16em; color: var(--azul); }
+
+  .secao { margin: 0 0 10mm; break-inside: avoid-page; }
+  .secao h2 { font-size: 20px; font-weight: 800; margin: 4px 0 10px; }
+  .secao h3 { font-size: 15px; font-weight: 700; margin: 14px 0 6px; }
+  p { margin: 0 0 8px; }
+
+  .numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(38mm, 1fr)); gap: 10px; margin: 0 0 10mm; }
+  .numero { background: var(--gelo); border-radius: 20px; padding: 14px 16px; }
+  .numero b { display: block; font: 800 26px "Plus Jakarta Sans", sans-serif; letter-spacing: -0.03em; color: var(--azul); }
+  .numero span { color: var(--mudo); font-size: 12px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead th { text-align: left; font: 600 10.5px Inter, sans-serif; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mudo); background: var(--gelo); padding: 8px 10px; }
+  tbody td { padding: 8px 10px; border-bottom: 1px solid var(--borda); vertical-align: top; }
+  tbody tr { break-inside: avoid; }
+
+  .cartoes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cartao { border: 1px solid var(--borda); border-radius: 24px; padding: 14px 16px; break-inside: avoid; }
+  .cartao h3 { margin-top: 0; }
+
+  .etiqueta { display: inline-block; font: 600 11px Inter, sans-serif; border-radius: 999px; padding: 2px 9px; background: var(--gelo); color: var(--azul); white-space: nowrap; }
+  .etiqueta.verde { background: #dff5e7; color: #17663a; }
+  .etiqueta.amarela { background: #fff3cf; color: #7a5600; }
+  .etiqueta.vermelha { background: #fde2e2; color: #9b1c1c; }
+  .nota { border-left: 4px solid var(--azul); background: var(--gelo); border-radius: 0 12px 12px 0; padding: 10px 14px; color: var(--tinta); }
+
+  .rodape { display: flex; justify-content: space-between; padding: 0 18mm 12mm; color: var(--mudo); font-size: 11px; }
+  .rodape b { color: var(--tinta); }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: #fff; }
+    .barra { display: none; }
+    .pagina { margin: 0; box-shadow: none; width: auto; min-height: auto; }
+  }
+</style>
+</head>
+<body>
+  <div class="barra">
+    <button onclick="window.print()">Salvar em PDF</button>
+    <span>Na janela que abrir, escolha <b>Salvar como PDF</b> em "Destino".</span>
+  </div>
+
+  <div class="pagina">
+    <header class="capa">
+      <img class="logo" src="marca/bevel-logo-claro.svg" alt="bevel SYSTEMS" />
+      <div class="rotulo">Tipo do documento · DD/MM/AAAA</div>
+      <h1>Título do documento</h1>
+      <p>Uma frase dizendo o que é o documento e para quem.</p>
+    </header>
+
+    <main>
+      <div class="numeros">
+        <div class="numero"><b>00</b><span>Número em destaque</span></div>
+        <div class="numero"><b>00</b><span>Número em destaque</span></div>
+        <div class="numero"><b>00</b><span>Número em destaque</span></div>
+      </div>
+
+      <section class="secao">
+        <div class="rotulo">Seção</div>
+        <h2>Título da seção</h2>
+        <p>Texto curto e direto.</p>
+        <table>
+          <thead><tr><th>Coluna</th><th>Coluna</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Item</td><td>Detalhe</td><td><span class="etiqueta verde">Fechado</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="secao">
+        <div class="nota">Observação ou próximo passo importante.</div>
+      </section>
+    </main>
+
+    <footer class="rodape"><span>Fonte: segundo cérebro da Bevel · gerado pelo Jarvis</span><span><b>Você e a Bevel.</b></span></footer>
+  </div>
+</body>
+</html>

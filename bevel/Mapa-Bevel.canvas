@@ -1,0 +1,1327 @@
+{
+ "nodes": [
+  {
+   "id": "centro",
+   "type": "text",
+   "text": "# 🧠 [[Bevel|Bevel]]\n**Segundo cérebro** · *Você e a Bevel.*",
+   "x": -300,
+   "y": -170,
+   "width": 600,
+   "height": 150,
+   "color": "#0062FC"
+  },
+  {
+   "id": "inicio",
+   "type": "text",
+   "text": "⭐ **[[00-Inicio|Início — onde estamos]]**",
+   "x": -300,
+   "y": -5,
+   "width": 292,
+   "height": 52
+  },
+  {
+   "id": "pend",
+   "type": "text",
+   "text": "✅ **[[Pendencias|Pendências]]**",
+   "x": 8,
+   "y": -5,
+   "width": 292,
+   "height": 52
+  },
+  {
+   "id": "leg",
+   "type": "text",
+   "text": "**Como ler:** sentido horário = caminho do negócio (empresa → mercado → produto → marketing → comercial → clientes → financeiro). ⭐ = nota principal. Clique num cartão para abrir.",
+   "x": -300,
+   "y": 62,
+   "width": 600,
+   "height": 96
+  },
+  {
+   "id": "g0",
+   "type": "group",
+   "label": "🏢 Empresa (4)",
+   "x": -334,
+   "y": -1521,
+   "width": 670,
+   "height": 282,
+   "color": "#F472B6"
+  },
+  {
+   "id": "h0",
+   "type": "text",
+   "text": "## 🏢 [[01-Empresa|Empresa]]\nQuem somos, sócios, visão",
+   "x": -306,
+   "y": -1493,
+   "width": 614,
+   "height": 80,
+   "color": "#F472B6"
+  },
+  {
+   "id": "n0_0_0",
+   "type": "text",
+   "text": "[[Glossario-e-Pessoas|Glossario e Pessoas]]",
+   "x": -306,
+   "y": -1399,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n0_0_1",
+   "type": "text",
+   "text": "[[Historia|Historia]]",
+   "x": 7,
+   "y": -1399,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n0_0_2",
+   "type": "text",
+   "text": "[[Socios|Socios]]",
+   "x": -306,
+   "y": -1333,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n0_0_3",
+   "type": "text",
+   "text": "[[Visao-e-Meta|Visao e Meta]]",
+   "x": 7,
+   "y": -1333,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g1",
+   "type": "group",
+   "label": "🎯 Mercado (5)",
+   "x": 611,
+   "y": -1334,
+   "width": 670,
+   "height": 348,
+   "color": "#FB923C"
+  },
+  {
+   "id": "h1",
+   "type": "text",
+   "text": "## 🎯 [[04-Mercado|Mercado]]\nPara quem vendemos",
+   "x": 639,
+   "y": -1306,
+   "width": 614,
+   "height": 80,
+   "color": "#FB923C"
+  },
+  {
+   "id": "n1_0_0",
+   "type": "text",
+   "text": "[[Concorrencia|Concorrencia]]",
+   "x": 639,
+   "y": -1212,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n1_0_1",
+   "type": "text",
+   "text": "⭐ **[[Nicho|Nicho]]**",
+   "x": 953,
+   "y": -1212,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n1_0_2",
+   "type": "text",
+   "text": "[[Nichos-Avaliados|Nichos Avaliados]]",
+   "x": 639,
+   "y": -1146,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n1_0_3",
+   "type": "text",
+   "text": "[[Posicionamento|Posicionamento]]",
+   "x": 953,
+   "y": -1146,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n1_0_4",
+   "type": "text",
+   "text": "[[Tese-Estrategica|Tese Estrategica]]",
+   "x": 639,
+   "y": -1080,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g2",
+   "type": "group",
+   "label": "🛠 Produto (7)",
+   "x": 1256,
+   "y": -780,
+   "width": 670,
+   "height": 414,
+   "color": "#19C3B1"
+  },
+  {
+   "id": "h2",
+   "type": "text",
+   "text": "## 🛠 [[03-Produto|Produto]]\nO que entregamos",
+   "x": 1284,
+   "y": -752,
+   "width": 614,
+   "height": 80,
+   "color": "#19C3B1"
+  },
+  {
+   "id": "n2_0_0",
+   "type": "text",
+   "text": "[[Assistente-de-Obra|Assistente de Obra]]",
+   "x": 1284,
+   "y": -658,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n2_0_1",
+   "type": "text",
+   "text": "[[Cases-e-Portfolio|Cases e Portfolio]]",
+   "x": 1598,
+   "y": -658,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n2_0_2",
+   "type": "text",
+   "text": "[[Chatbot-Agendamento|Chatbot Agendamento]]",
+   "x": 1284,
+   "y": -592,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n2_0_3",
+   "type": "text",
+   "text": "[[Chatbot-SDR-Imobiliario|Chatbot SDR Imobiliario]]",
+   "x": 1598,
+   "y": -592,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n2_0_4",
+   "type": "text",
+   "text": "[[Linhas-Superadas|Linhas Superadas]]",
+   "x": 1284,
+   "y": -526,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n2_0_5",
+   "type": "text",
+   "text": "[[Modulos-e-Customizacao|Modulos e Customizacao]]",
+   "x": 1598,
+   "y": -526,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n2_0_6",
+   "type": "text",
+   "text": "[[Stack-Tecnica|Stack Tecnica]]",
+   "x": 1284,
+   "y": -460,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g3",
+   "type": "group",
+   "label": "📣 Marketing (7)",
+   "x": 1397,
+   "y": -10,
+   "width": 670,
+   "height": 414,
+   "color": "#B07CFF"
+  },
+  {
+   "id": "h3",
+   "type": "text",
+   "text": "## 📣 [[06-Marketing|Marketing]]\nComo atraímos",
+   "x": 1425,
+   "y": 17,
+   "width": 614,
+   "height": 80,
+   "color": "#B07CFF"
+  },
+  {
+   "id": "n3_0_0",
+   "type": "text",
+   "text": "[[Canais-e-Perfis|Canais e Perfis]]",
+   "x": 1425,
+   "y": 111,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n3_0_1",
+   "type": "text",
+   "text": "⭐ **[[Carta-de-Apresentacao|Carta de Apresentacao]]**",
+   "x": 1739,
+   "y": 111,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n3_0_2",
+   "type": "text",
+   "text": "[[Conteudo|Conteudo]]",
+   "x": 1425,
+   "y": 177,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n3_0_3",
+   "type": "text",
+   "text": "⭐ **[[Identidade-Visual|Identidade Visual]]**",
+   "x": 1739,
+   "y": 177,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n3_0_4",
+   "type": "text",
+   "text": "[[Materiais-de-Venda|Materiais de Venda]]",
+   "x": 1425,
+   "y": 243,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n3_0_5",
+   "type": "text",
+   "text": "[[Site|Site]]",
+   "x": 1739,
+   "y": 243,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n3_0_6",
+   "type": "text",
+   "text": "[[Trafego-Pago|Trafego Pago]]",
+   "x": 1425,
+   "y": 309,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g4",
+   "type": "group",
+   "label": "💰 Comercial (18)",
+   "x": 987,
+   "y": 498,
+   "width": 670,
+   "height": 810,
+   "color": "#22D3EE"
+  },
+  {
+   "id": "h4",
+   "type": "text",
+   "text": "## 💰 [[05-Comercial|Comercial]]\nComo vendemos",
+   "x": 1015,
+   "y": 526,
+   "width": 614,
+   "height": 80,
+   "color": "#22D3EE"
+  },
+  {
+   "id": "n4_0_0",
+   "type": "text",
+   "text": "[[Formatos-de-Proposta|Formatos de Proposta]]",
+   "x": 1015,
+   "y": 620,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_1",
+   "type": "text",
+   "text": "[[Funil-LinkedIn-Baggio|Funil LinkedIn Baggio]]",
+   "x": 1329,
+   "y": 620,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_2",
+   "type": "text",
+   "text": "[[Leads-Construtoras|Leads Construtoras]]",
+   "x": 1015,
+   "y": 686,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_3",
+   "type": "text",
+   "text": "[[Lista-Ligacoes-SJP-2026-10-17|Lista Ligacoes SJP 2026 10 17]]",
+   "x": 1329,
+   "y": 686,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_4",
+   "type": "text",
+   "text": "[[Metas-da-Semana|Metas da Semana]]",
+   "x": 1015,
+   "y": 752,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_5",
+   "type": "text",
+   "text": "[[Metodologia-de-Precificacao|Metodologia de Precificacao]]",
+   "x": 1329,
+   "y": 752,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_6",
+   "type": "text",
+   "text": "[[Objecoes|Objecoes]]",
+   "x": 1015,
+   "y": 818,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_7",
+   "type": "text",
+   "text": "[[Perguntas-de-Descoberta|Perguntas de Descoberta]]",
+   "x": 1329,
+   "y": 818,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_8",
+   "type": "text",
+   "text": "[[Planos-Chatbot|Planos Chatbot]]",
+   "x": 1015,
+   "y": 884,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_9",
+   "type": "text",
+   "text": "⭐ **[[Precos|Precos]]**",
+   "x": 1329,
+   "y": 884,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_10",
+   "type": "text",
+   "text": "[[Processo-de-Prospeccao|Processo de Prospeccao]]",
+   "x": 1015,
+   "y": 950,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_11",
+   "type": "text",
+   "text": "⭐ **[[Processo-de-Vendas-e-Entrega|Processo de Vendas e Entrega]]**",
+   "x": 1329,
+   "y": 950,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_12",
+   "type": "text",
+   "text": "[[Regras-WhatsApp|Regras WhatsApp]]",
+   "x": 1015,
+   "y": 1016,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_0_13",
+   "type": "text",
+   "text": "[[Regras-de-Venda|Regras de Venda]]",
+   "x": 1329,
+   "y": 1016,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "s4_1",
+   "type": "text",
+   "text": "**[[Roteiros|📞 Roteiros]]** (4)",
+   "x": 1015,
+   "y": 1082,
+   "width": 614,
+   "height": 52,
+   "color": "#22D3EE"
+  },
+  {
+   "id": "n4_1_0",
+   "type": "text",
+   "text": "[[Roteiro-Instagram|Roteiro Instagram]]",
+   "x": 1015,
+   "y": 1148,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_1_1",
+   "type": "text",
+   "text": "[[Roteiro-Ligacao|Roteiro Ligacao]]",
+   "x": 1329,
+   "y": 1148,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_1_2",
+   "type": "text",
+   "text": "[[Roteiro-LinkedIn|Roteiro LinkedIn]]",
+   "x": 1015,
+   "y": 1214,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n4_1_3",
+   "type": "text",
+   "text": "[[Roteiro-Reuniao|Roteiro Reuniao]]",
+   "x": 1329,
+   "y": 1214,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g5",
+   "type": "group",
+   "label": "🤝 Clientes (21)",
+   "x": 158,
+   "y": 721,
+   "width": 670,
+   "height": 1206,
+   "color": "#0062FC"
+  },
+  {
+   "id": "h5",
+   "type": "text",
+   "text": "## 🤝 [[02-Clientes|Clientes]]\nQuem já está com a gente",
+   "x": 186,
+   "y": 749,
+   "width": 614,
+   "height": 80,
+   "color": "#0062FC"
+  },
+  {
+   "id": "n5_0_0",
+   "type": "text",
+   "text": "⭐ **[[Clientes|Clientes]]**",
+   "x": 186,
+   "y": 843,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "s5_1",
+   "type": "text",
+   "text": "**[[Fechados|✅ Fechados]]** (2)",
+   "x": 186,
+   "y": 909,
+   "width": 614,
+   "height": 52,
+   "color": "#0062FC"
+  },
+  {
+   "id": "n5_1_0",
+   "type": "text",
+   "text": "[[Interativos|Interativos]]",
+   "x": 186,
+   "y": 975,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_1_1",
+   "type": "text",
+   "text": "[[Morais-Barbershop|Morais Barbershop]]",
+   "x": 500,
+   "y": 975,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "s5_2",
+   "type": "text",
+   "text": "**[[Em-Negociacao|🔄 Em negociação]]** (9)",
+   "x": 186,
+   "y": 1041,
+   "width": 614,
+   "height": 52,
+   "color": "#0062FC"
+  },
+  {
+   "id": "n5_2_0",
+   "type": "text",
+   "text": "[[Digitron|Digitron]]",
+   "x": 186,
+   "y": 1107,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_2_1",
+   "type": "text",
+   "text": "[[Empresa-de-Engenharia|Empresa de Engenharia]]",
+   "x": 500,
+   "y": 1107,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_2_2",
+   "type": "text",
+   "text": "[[Equivet|Equivet]]",
+   "x": 186,
+   "y": 1173,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_2_3",
+   "type": "text",
+   "text": "[[Escolinha-de-Futebol|Escolinha de Futebol]]",
+   "x": 500,
+   "y": 1173,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_2_4",
+   "type": "text",
+   "text": "[[Fola|Fola]]",
+   "x": 186,
+   "y": 1239,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_2_5",
+   "type": "text",
+   "text": "[[Muzao|Muzao]]",
+   "x": 500,
+   "y": 1239,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_2_6",
+   "type": "text",
+   "text": "[[Ortech|Ortech]]",
+   "x": 186,
+   "y": 1305,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_2_7",
+   "type": "text",
+   "text": "[[Ortech-Briefing-Requisitos|Ortech Briefing Requisitos]]",
+   "x": 500,
+   "y": 1305,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_2_8",
+   "type": "text",
+   "text": "[[XA-Chico|XA Chico]]",
+   "x": 186,
+   "y": 1371,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "s5_3",
+   "type": "text",
+   "text": "**[[Leads|🧊 Leads]]** (6)",
+   "x": 186,
+   "y": 1437,
+   "width": 614,
+   "height": 52,
+   "color": "#0062FC"
+  },
+  {
+   "id": "n5_3_0",
+   "type": "text",
+   "text": "[[Bolino|Bolino]]",
+   "x": 186,
+   "y": 1503,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_3_1",
+   "type": "text",
+   "text": "[[Instituto-Camara-Lopes|Instituto Camara Lopes]]",
+   "x": 500,
+   "y": 1503,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_3_2",
+   "type": "text",
+   "text": "[[Jean-Imperium|Jean Imperium]]",
+   "x": 186,
+   "y": 1569,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_3_3",
+   "type": "text",
+   "text": "[[Joalheria-Bia|Joalheria Bia]]",
+   "x": 500,
+   "y": 1569,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_3_4",
+   "type": "text",
+   "text": "[[Leads-Radar-LinkedIn|Leads Radar LinkedIn]]",
+   "x": 186,
+   "y": 1635,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_3_5",
+   "type": "text",
+   "text": "[[Whindersson|Whindersson]]",
+   "x": 500,
+   "y": 1635,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "s5_4",
+   "type": "text",
+   "text": "**[[Parados-ou-Perdidos|⏸ Parados ou perdidos]]** (3)",
+   "x": 186,
+   "y": 1701,
+   "width": 614,
+   "height": 52,
+   "color": "#0062FC"
+  },
+  {
+   "id": "n5_4_0",
+   "type": "text",
+   "text": "[[Jacon|Jacon]]",
+   "x": 186,
+   "y": 1767,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_4_1",
+   "type": "text",
+   "text": "[[Mu|Mu]]",
+   "x": 500,
+   "y": 1767,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n5_4_2",
+   "type": "text",
+   "text": "[[Puppy-Stop|Puppy Stop]]",
+   "x": 186,
+   "y": 1833,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g6",
+   "type": "group",
+   "label": "💵 Financeiro (7)",
+   "x": -828,
+   "y": 1117,
+   "width": 670,
+   "height": 414,
+   "color": "#FACC15"
+  },
+  {
+   "id": "h6",
+   "type": "text",
+   "text": "## 💵 [[10-Financeiro|Financeiro]]\nDinheiro que entra e sai",
+   "x": -800,
+   "y": 1145,
+   "width": 614,
+   "height": 80,
+   "color": "#FACC15"
+  },
+  {
+   "id": "n6_0_0",
+   "type": "text",
+   "text": "[[Controle-e-Planilhas|Controle e Planilhas]]",
+   "x": -800,
+   "y": 1239,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n6_0_1",
+   "type": "text",
+   "text": "[[Custos|Custos]]",
+   "x": -486,
+   "y": 1239,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n6_0_2",
+   "type": "text",
+   "text": "[[Metas-e-Projecoes|Metas e Projecoes]]",
+   "x": -800,
+   "y": 1305,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n6_0_3",
+   "type": "text",
+   "text": "[[Pagamentos|Pagamentos]]",
+   "x": -486,
+   "y": 1305,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n6_0_4",
+   "type": "text",
+   "text": "[[Rateio-Socios|Rateio Socios]]",
+   "x": -800,
+   "y": 1371,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n6_0_5",
+   "type": "text",
+   "text": "[[Receitas|Receitas]]",
+   "x": -486,
+   "y": 1371,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n6_0_6",
+   "type": "text",
+   "text": "⭐ **[[Resultado-Acumulado|Resultado Acumulado]]**",
+   "x": -800,
+   "y": 1437,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g7",
+   "type": "group",
+   "label": "⚖️ Jurídico (3)",
+   "x": -1657,
+   "y": 762,
+   "width": 670,
+   "height": 282,
+   "color": "#A3E635"
+  },
+  {
+   "id": "h7",
+   "type": "text",
+   "text": "## ⚖️ [[11-Juridico|Jurídico]]\nContrato, fiscal, riscos legais",
+   "x": -1629,
+   "y": 790,
+   "width": 614,
+   "height": 80,
+   "color": "#A3E635"
+  },
+  {
+   "id": "n7_0_0",
+   "type": "text",
+   "text": "[[Compliance-e-Riscos-Legais|Compliance e Riscos Legais]]",
+   "x": -1629,
+   "y": 884,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n7_0_1",
+   "type": "text",
+   "text": "⭐ **[[Contrato-Modelo|Contrato Modelo]]**",
+   "x": -1315,
+   "y": 884,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n7_0_2",
+   "type": "text",
+   "text": "[[Estrutura-Fiscal|Estrutura Fiscal]]",
+   "x": -1629,
+   "y": 950,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g8",
+   "type": "group",
+   "label": "⚙️ Operação (9)",
+   "x": -2067,
+   "y": -43,
+   "width": 670,
+   "height": 480,
+   "color": "#4ADE80"
+  },
+  {
+   "id": "h8",
+   "type": "text",
+   "text": "## ⚙️ [[07-Operacao|Operação]]\nFerramentas e rotina",
+   "x": -2039,
+   "y": -15,
+   "width": 614,
+   "height": 80,
+   "color": "#4ADE80"
+  },
+  {
+   "id": "n8_0_0",
+   "type": "text",
+   "text": "[[CRM-Bevel|CRM Bevel]]",
+   "x": -2039,
+   "y": 78,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n8_0_1",
+   "type": "text",
+   "text": "[[ClickUp|ClickUp]]",
+   "x": -1725,
+   "y": 78,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n8_0_2",
+   "type": "text",
+   "text": "[[Conversas-Claude|Conversas Claude]]",
+   "x": -2039,
+   "y": 144,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n8_0_3",
+   "type": "text",
+   "text": "[[Ferramentas|Ferramentas]]",
+   "x": -1725,
+   "y": 144,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n8_0_4",
+   "type": "text",
+   "text": "[[Fila-ClickUp|Fila ClickUp]]",
+   "x": -2039,
+   "y": 210,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n8_0_5",
+   "type": "text",
+   "text": "[[Onboarding-de-Cliente|Onboarding de Cliente]]",
+   "x": -1725,
+   "y": 210,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n8_0_6",
+   "type": "text",
+   "text": "[[Processos-Sugeridos|Processos Sugeridos]]",
+   "x": -2039,
+   "y": 276,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n8_0_7",
+   "type": "text",
+   "text": "[[Rituais|Rituais]]",
+   "x": -1725,
+   "y": 276,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n8_0_8",
+   "type": "text",
+   "text": "[[Sessoes-e-Temas|Sessoes e Temas]]",
+   "x": -2039,
+   "y": 342,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g9",
+   "type": "group",
+   "label": "📌 Decisões (3)",
+   "x": -1926,
+   "y": -714,
+   "width": 670,
+   "height": 282,
+   "color": "#F87171"
+  },
+  {
+   "id": "h9",
+   "type": "text",
+   "text": "## 📌 [[08-Decisoes|Decisões]]\nO que foi decidido e o que falta",
+   "x": -1898,
+   "y": -686,
+   "width": 614,
+   "height": 80,
+   "color": "#F87171"
+  },
+  {
+   "id": "n9_0_0",
+   "type": "text",
+   "text": "⭐ **[[Divergencias-a-Resolver|Divergencias a Resolver]]**",
+   "x": -1898,
+   "y": -592,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n9_0_1",
+   "type": "text",
+   "text": "⭐ **[[Registro-de-Decisoes|Registro de Decisoes]]**",
+   "x": -1584,
+   "y": -592,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n9_0_2",
+   "type": "text",
+   "text": "[[Riscos|Riscos]]",
+   "x": -1898,
+   "y": -526,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "g10",
+   "type": "group",
+   "label": "🗓 Reuniões (17)",
+   "x": -1281,
+   "y": -1532,
+   "width": 670,
+   "height": 744,
+   "color": "#CBD5E1"
+  },
+  {
+   "id": "h10",
+   "type": "text",
+   "text": "## 🗓 [[09-Reunioes|Reuniões]]\nAtas, da mais nova para a mais antiga",
+   "x": -1253,
+   "y": -1504,
+   "width": 614,
+   "height": 80,
+   "color": "#CBD5E1"
+  },
+  {
+   "id": "n10_0_0",
+   "type": "text",
+   "text": "[[2026-10-27-Ortech-Diagnostico|27/10 · Ortech Diagnostico]]",
+   "x": -1253,
+   "y": -1410,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_1",
+   "type": "text",
+   "text": "[[2026-10-27-Accelera-360|27/10 · Accelera 360]]",
+   "x": -939,
+   "y": -1410,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_2",
+   "type": "text",
+   "text": "[[2026-10-24-Socios-pauta|24/10 · Socios pauta]]",
+   "x": -1253,
+   "y": -1344,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_3",
+   "type": "text",
+   "text": "[[2026-10-24-Socios-anotacoes-CRM|24/10 · Socios anotacoes CRM]]",
+   "x": -939,
+   "y": -1344,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_4",
+   "type": "text",
+   "text": "[[2026-10-24-Socios|24/10 · Socios]]",
+   "x": -1253,
+   "y": -1278,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_5",
+   "type": "text",
+   "text": "[[2026-10-20-Tafa|20/10 · Tafa]]",
+   "x": -939,
+   "y": -1278,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_6",
+   "type": "text",
+   "text": "[[2026-10-20-Equivet-2a-reuniao|20/10 · Equivet 2a reuniao]]",
+   "x": -1253,
+   "y": -1212,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_7",
+   "type": "text",
+   "text": "[[2026-10-13-Equivet|13/10 · Equivet]]",
+   "x": -939,
+   "y": -1212,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_8",
+   "type": "text",
+   "text": "[[2026-10-10-Donato-Digitron|10/10 · Donato Digitron]]",
+   "x": -1253,
+   "y": -1146,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_9",
+   "type": "text",
+   "text": "[[2026-10-08-Socios-Estrategia-Nicho|08/10 · Socios Estrategia Nicho]]",
+   "x": -939,
+   "y": -1146,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_10",
+   "type": "text",
+   "text": "[[2026-10-08-Mentoria-Processo-Fola|08/10 · Mentoria Processo Fola]]",
+   "x": -1253,
+   "y": -1080,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_11",
+   "type": "text",
+   "text": "[[2026-10-07-Junior-Interativos|07/10 · Junior Interativos]]",
+   "x": -939,
+   "y": -1080,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_12",
+   "type": "text",
+   "text": "[[2026-09-29-XA|29/09 · XA]]",
+   "x": -1253,
+   "y": -1014,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_13",
+   "type": "text",
+   "text": "[[2026-09-24-Socios|24/09 · Socios]]",
+   "x": -939,
+   "y": -1014,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_14",
+   "type": "text",
+   "text": "[[2026-09-21-Socios|21/09 · Socios]]",
+   "x": -1253,
+   "y": -948,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_15",
+   "type": "text",
+   "text": "[[2026-09-17-Muzao|17/09 · Muzao]]",
+   "x": -939,
+   "y": -948,
+   "width": 300,
+   "height": 52
+  },
+  {
+   "id": "n10_0_16",
+   "type": "text",
+   "text": "[[2026-09-14-Socios|14/09 · Socios]]",
+   "x": -1253,
+   "y": -882,
+   "width": 300,
+   "height": 52
+  }
+ ],
+ "edges": [
+  {
+   "id": "e0",
+   "fromNode": "centro",
+   "toNode": "g0",
+   "toSide": "bottom",
+   "color": "#F472B6"
+  },
+  {
+   "id": "e1",
+   "fromNode": "centro",
+   "toNode": "g1",
+   "toSide": "bottom",
+   "color": "#FB923C"
+  },
+  {
+   "id": "e2",
+   "fromNode": "centro",
+   "toNode": "g2",
+   "toSide": "left",
+   "color": "#19C3B1"
+  },
+  {
+   "id": "e3",
+   "fromNode": "centro",
+   "toNode": "g3",
+   "toSide": "left",
+   "color": "#B07CFF"
+  },
+  {
+   "id": "e4",
+   "fromNode": "centro",
+   "toNode": "g4",
+   "toSide": "top",
+   "color": "#22D3EE"
+  },
+  {
+   "id": "e5",
+   "fromNode": "centro",
+   "toNode": "g5",
+   "toSide": "top",
+   "color": "#0062FC"
+  },
+  {
+   "id": "e6",
+   "fromNode": "centro",
+   "toNode": "g6",
+   "toSide": "top",
+   "color": "#FACC15"
+  },
+  {
+   "id": "e7",
+   "fromNode": "centro",
+   "toNode": "g7",
+   "toSide": "top",
+   "color": "#A3E635"
+  },
+  {
+   "id": "e8",
+   "fromNode": "centro",
+   "toNode": "g8",
+   "toSide": "right",
+   "color": "#4ADE80"
+  },
+  {
+   "id": "e9",
+   "fromNode": "centro",
+   "toNode": "g9",
+   "toSide": "right",
+   "color": "#F87171"
+  },
+  {
+   "id": "e10",
+   "fromNode": "centro",
+   "toNode": "g10",
+   "toSide": "bottom",
+   "color": "#CBD5E1"
+  },
+  {
+   "id": "f0",
+   "fromNode": "g3",
+   "toNode": "g4",
+   "label": "gera leads",
+   "toEnd": "arrow"
+  },
+  {
+   "id": "f1",
+   "fromNode": "g4",
+   "toNode": "g5",
+   "label": "fecha",
+   "toEnd": "arrow"
+  },
+  {
+   "id": "f2",
+   "fromNode": "g5",
+   "toNode": "g6",
+   "label": "paga",
+   "toEnd": "arrow"
+  },
+  {
+   "id": "f3",
+   "fromNode": "g10",
+   "toNode": "g9",
+   "label": "decide",
+   "toEnd": "arrow"
+  }
+ ]
+}

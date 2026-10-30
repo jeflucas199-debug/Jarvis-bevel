@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rateio dos Sócios Bevel</title>
+<style>
+:root{
+  --bg:#f5f6f4; --surface:#ffffff; --fg:#1b201d; --muted:#5d6762; --line:#dde2de;
+  --accent:#1f6f54; --accent-soft:#e3f0ea; --neg:#a2402e; --neg-soft:#f7e6e1; --warn:#8a5a00; --warn-soft:#fbf1dc;
+  --body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Roboto Mono",monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#121614; --surface:#1a201d; --fg:#e7ece9; --muted:#9aa6a0; --line:#2c3531;
+  --accent:#5fc49c; --accent-soft:#1d332a; --neg:#ec8a74; --neg-soft:#3a221c; --warn:#e5b65c; --warn-soft:#352a14; color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding:32px 16px 48px}
+.wrap > * + *{margin-top:32px}
+h1{font-size:28px;line-height:1.15;margin:0}
+h2{font-size:19px;margin:0 0 12px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.lead{color:var(--muted);margin:10px 0 0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pix-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.pix-who{min-width:0;font-weight:600}
+.pix-who small{display:block;color:var(--muted);font-weight:400;font-size:13px}
+.pix-val{font-family:var(--mono);font-size:19px;font-weight:600;white-space:nowrap}
+.recv{background:var(--accent-soft);border-color:transparent}
+.foot{color:var(--muted);font-size:13px;margin:8px 0 0}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+th{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.r,th.r{text-align:right}
+tbody tr:last-child td{border-bottom:0}
+tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:0}
+.chip{display:inline-block;font-family:var(--mono);font-size:13px;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.chip.neg{background:var(--neg-soft);color:var(--neg)}
+.chip.pos{background:var(--accent-soft);color:var(--accent)}
+ul{margin:0;padding-left:20px}
+li + li{margin-top:6px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.box p{margin:0}
+.box p + p{margin-top:8px}
+.alert{background:var(--warn-soft);border-radius:10px;padding:14px 16px}
+.alert strong{color:var(--warn)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Bevel Systems · Financeiro · Outubro/2026</p>
+    <h1>Rateio de custos entre os sócios</h1>
+    <p class="lead">Divisão dos gastos do mês entre Arthur, Vitor, Lucas e Du. Cada um faz um único Pix para o Lucas, que pagou a maior parte no cartão.</p>
+  </header>
+
+  <section>
+    <h2>Quem paga quem</h2>
+    <div class="pix-row"><div class="pix-who">Arthur → Lucas<small>Claude Zé + parte dos custos − chip que pagou</small></div><span class="pix-val">R$ 77,42</span></div>
+    <div class="pix-row"><div class="pix-who">Vitor → Lucas<small>Claude VT + parte dos custos − chip que pagou</small></div><span class="pix-val">R$ 132,42</span></div>
+    <div class="pix-row"><div class="pix-who">Du → Lucas<small>Parte dos custos compartilhados</small></div><span class="pix-val">R$ 57,42</span></div>
+    <div class="pix-row recv"><div class="pix-who">Lucas recebe no total<small>1 centavo a mais por arredondamento</small></div><span class="pix-val">R$ 267,26</span></div>
+  </section>
+
+  <section>
+    <h2>Regra usada</h2>
+    <ul>
+      <li>O Claude de cada um é pago <strong>integralmente</strong> por quem usa. O cartão do Lucas é só o meio de pagamento.</li>
+      <li>Playbook, tokens e chips são custos da empresa e são divididos em <strong>25% por sócio</strong>.</li>
+      <li>O acerto é feito pelo saldo de cada um, então cada sócio faz só um Pix.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Por que o chip não é pago direto a quem comprou?</h2>
+    <div class="box">
+      <p>Pelo chip de R$ 90 do Arthur, cada sócio deve R$ 22,50 a ele. Em vez de cada um mandar esse valor, ele foi descontado do que o Arthur deve ao Lucas.</p>
+      <p>A parte do Du nesse chip está dentro dos R$ 57,42 que ele paga ao Lucas. O Lucas fica com ela e o Arthur paga R$ 22,50 a menos. O resultado final é o mesmo, com 3 Pix em vez de 9. O mesmo vale para o chip do Vitor.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Custos individuais</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Item</th><th>Cartão</th><th>Quem paga</th><th class="r">Valor</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Zé</td><td>Lucas</td><td>Arthur</td><td class="r num">110,00</td></tr>
+        <tr><td>Claude VT</td><td>Lucas</td><td>Vitor</td><td class="r num">110,00</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Custos compartilhados</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Item</th><th>Pagou</th><th class="r">Valor</th><th class="r">Cada um</th></tr></thead>
+      <tbody>
+        <tr><td>Playbook</td><td>Lucas</td><td class="r num">29,90</td><td class="r num">7,48</td></tr>
+        <tr><td>Tokens</td><td>Lucas</td><td class="r num">74,77</td><td class="r num">18,69</td></tr>
+        <tr><td>Chip Zé (3x)</td><td>Arthur</td><td class="r num">90,00</td><td class="r num">22,50</td></tr>
+        <tr><td>Chip VT (1x)</td><td>Vitor</td><td class="r num">35,00</td><td class="r num">8,75</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2">Total</td><td class="r num">229,67</td><td class="r num">57,42</td></tr></tfoot>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Saldo por sócio</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Sócio</th><th class="r">Pagou</th><th class="r">Deve</th><th class="r">Saldo</th></tr></thead>
+      <tbody>
+        <tr><td>Arthur</td><td class="r num">90,00</td><td class="r num">167,42</td><td class="r"><span class="chip neg">−77,42</span></td></tr>
+        <tr><td>Vitor</td><td class="r num">35,00</td><td class="r num">167,42</td><td class="r"><span class="chip neg">−132,42</span></td></tr>
+        <tr><td>Lucas</td><td class="r num">324,67</td><td class="r num">57,42</td><td class="r"><span class="chip pos">+267,25</span></td></tr>
+        <tr><td>Du</td><td class="r num">0,00</td><td class="r num">57,42</td><td class="r"><span class="chip neg">−57,42</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="foot">Deve = Claude próprio (quando tem) + R$ 57,42 dos custos compartilhados.</p>
+  </section>
+
+  <div class="alert"><strong>Corrigir na planilha:</strong> a linha TOTAL mostra 249,90, mas a soma de todos os itens dá <span class="num">449,67</span>, e os custos compartilhados somam <span class="num">229,67</span>.</div>
+</div>
+</body>
+</html>

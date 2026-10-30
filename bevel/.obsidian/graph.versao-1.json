@@ -1,0 +1,65 @@
+{
+  "collapse-filter": false,
+  "search": "-path:_arquivo -path:Templates",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:02-Clientes",
+      "color": {
+        "a": 1,
+        "rgb": 25340
+      }
+    },
+    {
+      "query": "path:05-Comercial",
+      "color": {
+        "a": 1,
+        "rgb": 4756982
+      }
+    },
+    {
+      "query": "path:09-Reunioes",
+      "color": {
+        "a": 1,
+        "rgb": 8368895
+      }
+    },
+    {
+      "query": "path:08-Decisoes OR file:Pendencias",
+      "color": {
+        "a": 1,
+        "rgb": 15002615
+      }
+    },
+    {
+      "query": "path:10-Financeiro OR path:11-Juridico",
+      "color": {
+        "a": 1,
+        "rgb": 670376
+      }
+    },
+    {
+      "query": "path:01-Empresa OR file:00-Inicio",
+      "color": {
+        "a": 1,
+        "rgb": 16777215
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.5,
+  "repelStrength": 10,
+  "linkStrength": 1,
+  "linkDistance": 250,
+  "scale": 1.1808011434883523,
+  "close": true
+}

@@ -1,0 +1,3065 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Expedição Digitron no WhatsApp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: coluna única de leitura, blocos por fase, raia de fluxo horizontal que rola sozinha no celular */
+:root {
+  --bg: #03060d;
+  --surface: #0a1120;
+  --surface-2: #111c36;
+  --line: #1c2a4a;
+  --fg: #f4f6fb;
+  --muted: #9aa8c7;
+  --blue: #1e6bff;
+  --teal: #5fd3c4;
+  --warn: #f2b84b;
+  --wa-in: #16233f;
+  --wa-out: #0f3b4a;
+  --display: "Oswald", "Arial Narrow", Arial, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 80px; display: grid; gap: 64px; }
+h1, h2, h3 { font-family: var(--display); text-transform: uppercase; letter-spacing: .01em; line-height: 1.1; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 700; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); font-weight: 600; }
+h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: .03em; }
+h1 em, h2 em { font-style: normal; color: var(--blue); }
+p { margin: 0; max-width: 65ch; }
+.muted { color: var(--muted); }
+.eyebrow { display: flex; align-items: center; gap: 10px; font: 600 .75rem/1 var(--body); text-transform: uppercase; letter-spacing: .14em; color: var(--teal); }
+.eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--teal); }
+section { display: grid; gap: 24px; }
+code, .mono { font-family: var(--mono); font-size: .86em; }
+code { background: var(--surface-2); padding: 1px 6px; border-radius: 4px; color: var(--teal); }
+
+/* topo */
+.brand { font: 600 .8rem/1 var(--display); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.brand b { color: var(--fg); }
+header { display: grid; gap: 20px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: .8rem; color: var(--muted); }
+.tag b { color: var(--teal); font-weight: 600; }
+
+/* conversa de exemplo */
+.demo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 32px; align-items: start; }
+.phone { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px; display: grid; gap: 10px; }
+.phone-top { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--blue); display: grid; place-items: center; font: 700 .9rem var(--display); }
+.phone-top small { display: block; color: var(--teal); font-size: .72rem; }
+.msg { max-width: 88%; padding: 8px 12px; border-radius: 12px; font-size: .86rem; line-height: 1.45; white-space: pre-line; }
+.msg.in { background: var(--wa-in); justify-self: start; border-top-left-radius: 3px; }
+.msg.out { background: var(--wa-out); justify-self: end; border-top-right-radius: 3px; }
+.msg .who { display: block; font-size: .7rem; color: var(--teal); font-weight: 600; margin-bottom: 2px; }
+.file { display: flex; gap: 10px; align-items: center; }
+.file svg { flex: none; }
+.audio { display: flex; gap: 8px; align-items: center; }
+.audio .bars { flex: 1; height: 18px; background: repeating-linear-gradient(90deg, var(--muted) 0 2px, transparent 2px 5px); opacity: .5; border-radius: 2px; min-width: 90px; }
+.steps { display: grid; gap: 18px; counter-reset: s; }
+.step { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 14px; }
+.step::before { counter-increment: s; content: counter(s); width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--blue); display: grid; place-items: center; font: 600 .95rem var(--display); color: var(--fg); }
+.step h3 { margin-bottom: 4px; }
+.step p { color: var(--muted); font-size: .95rem; }
+
+/* fases */
+.phases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.phase { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: grid; gap: 12px; align-content: start; }
+.phase .num { font: 700 2.4rem/1 var(--display); color: var(--blue); }
+.phase ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.phase li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; font-size: .93rem; }
+.phase li::before { content: ""; width: 10px; height: 6px; border-left: 2px solid var(--teal); border-bottom: 2px solid var(--teal); transform: rotate(-45deg); margin-top: 7px; }
+.phase .when { font-size: .8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+
+/* status */
+.statusbar { overflow-x: auto; padding-bottom: 6px; }
+.status { display: flex; align-items: center; gap: 0; min-width: 760px; }
+.st { flex: 1; text-align: center; display: grid; gap: 8px; justify-items: center; }
+.st i { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--teal); background: var(--bg); position: relative; z-index: 1; }
+.st span { font-size: .82rem; font-weight: 600; }
+.st small { font-size: .72rem; color: var(--muted); }
+.track { position: relative; display: flex; }
+.track::before { content: ""; position: absolute; top: 7px; left: 8%; right: 8%; height: 2px; background: linear-gradient(90deg, var(--teal), var(--blue)); }
+.st.done i { background: var(--blue); border-color: var(--blue); }
+.pend { margin-top: 14px; display: inline-flex; gap: 10px; align-items: center; border: 1px dashed var(--warn); color: var(--warn); border-radius: 8px; padding: 6px 12px; font-size: .85rem; }
+
+/* fluxo técnico */
+.lanes { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.lanes table { border-collapse: collapse; width: 100%; min-width: 820px; }
+.lanes th { text-align: left; font: 600 .72rem var(--body); text-transform: uppercase; letter-spacing: .12em; color: var(--teal); padding: 14px 16px; width: 150px; vertical-align: top; border-bottom: 1px solid var(--line); }
+.lanes td { padding: 14px 16px 14px 0; border-bottom: 1px solid var(--line); }
+.lanes tr:last-child th, .lanes tr:last-child td { border-bottom: 0; }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.node { background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; font-size: .8rem; white-space: nowrap; }
+.node.ai { border-color: var(--blue); color: #cfe0ff; }
+.node.db { border-color: var(--teal); color: var(--teal); }
+.node.wa { background: var(--wa-out); border-color: #1e5a6e; }
+.arrow { color: var(--muted); font-size: .8rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .8rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend .node { padding: 1px 8px; }
+
+/* planilha */
+.sheets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.sheet { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.sheet h3 { padding: 14px 16px; background: var(--surface-2); display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.sheet h3 small { font: 500 .72rem var(--body); text-transform: none; color: var(--muted); letter-spacing: 0; }
+.cols { display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 16px; }
+.cols code { font-size: .74rem; }
+
+/* configuração */
+.setup { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+.config { border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; }
+.config table { width: 100%; border-collapse: collapse; font-size: .84rem; min-width: 420px; }
+.config td { padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.config tr:last-child td { border-bottom: 0; }
+.config td:first-child { font-family: var(--mono); font-size: .76rem; color: var(--teal); white-space: nowrap; }
+.config td:last-child { color: var(--muted); }
+
+/* pendências */
+.todo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.todo div { border-left: 3px solid var(--warn); background: var(--surface); padding: 14px 16px; border-radius: 0 8px 8px 0; display: grid; gap: 4px; }
+.todo b { font-weight: 600; }
+.todo span { color: var(--muted); font-size: .9rem; }
+
+/* plano */
+.tag-link { text-decoration: none; color: var(--fg); border-color: var(--blue); }
+.plan { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.block { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: grid; gap: 14px; align-content: start; }
+.block-head { display: grid; gap: 8px; }
+.when-tag { justify-self: start; font: 600 .7rem/1 var(--body); text-transform: uppercase; letter-spacing: .12em; color: var(--blue); border: 1px solid var(--blue); border-radius: 999px; padding: 4px 10px; }
+.check { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.check label { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; padding: 8px; border-radius: 8px; cursor: pointer; }
+.check label:hover { background: var(--surface-2); }
+.check input { width: 17px; height: 17px; margin: 3px 0 0; accent-color: var(--teal); }
+.check b { display: block; font-weight: 600; font-size: .93rem; }
+.check small { display: block; color: var(--muted); font-size: .84rem; line-height: 1.45; }
+.check input:checked + span b { text-decoration: line-through; color: var(--muted); }
+.risks { display: grid; gap: 14px; }
+
+/* importar */
+.import { background: var(--surface-2); border: 1px solid var(--blue); border-radius: 14px; padding: 28px; display: grid; gap: 16px; }
+.import .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+button { font: 600 .9rem var(--body); background: var(--blue); color: #fff; border: 0; border-radius: 8px; padding: 12px 20px; cursor: pointer; }
+button:hover { filter: brightness(1.12); }
+button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+#copiado { color: var(--teal); font-size: .9rem; }
+#jsonbox { width: 100%; height: 160px; background: var(--bg); color: var(--muted); border: 1px solid var(--line); border-radius: 8px; padding: 10px; font: .72rem/1.4 var(--mono); }
+footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line); padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+@media (max-width: 820px) {
+  .demo, .setup { grid-template-columns: minmax(0, 1fr); }
+  .phases, .sheets, .todo, .plan { grid-template-columns: minmax(0, 1fr); }
+  .wrap { gap: 52px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+  <header>
+    <div class="brand"><b>bevel</b> SYSTEMS · Projeto Digitron</div>
+    <h1>O funcionário virtual da <em>expedição</em>, no WhatsApp</h1>
+    <p class="muted">Fluxo n8n que cadastra a Ordem de Serviço a partir do PDF, atualiza o status de cada produto por mensagem ou áudio e manda relatório e alerta de produtos parados para o gestor. Cobre as três fases da proposta num workflow só.</p>
+    <div class="tags">
+      <span class="tag"><b>Canal</b> WhatsApp · Evolution API</span>
+      <span class="tag"><b>Leitura</b> Gemini (PDF, foto, áudio, texto)</span>
+      <span class="tag"><b>Dados</b> Google Sheets</span>
+      <span class="tag"><b>Orquestração</b> n8n · 65 nós</span>
+      <a class="tag tag-link" href="#plano"><b>→</b> Plano de ação</a>
+    </div>
+  </header>
+
+  <section>
+    <div class="eyebrow">Como o time usa</div>
+    <h2>Ninguém sai do posto, <em>ninguém digita planilha</em></h2>
+    <div class="demo">
+      <div class="phone" aria-label="Exemplo de conversa">
+        <div class="phone-top">
+          <div class="avatar">D</div>
+          <div><b>Expedição Digitron</b><small>bot · online</small></div>
+        </div>
+        <div class="msg in"><span class="who">Carlos</span><span class="file"><svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true"><path d="M2 2h15l7 7v19H2z" fill="#1e6bff"/><path d="M17 2v7h7" fill="#7aa6ff"/><text x="13" y="23" font-size="7" font-family="Arial" font-weight="700" text-anchor="middle" fill="#fff">PDF</text></svg>OS_1200.pdf</span></div>
+        <div class="msg out">📦 *OS 1200 cadastrada* · Frigorífico Sul
+Prazo: 20/10/2026
+• 1200-1 · Balança rodoviária 80t (qtd 1)
+• 1200-2 · Indicador digital (qtd 2)</div>
+        <div class="msg in"><span class="who">João</span><span class="audio">▶ <span class="bars"></span> 0:04</span></div>
+        <div class="msg out">🎙️ "a rodoviária da 1200 foi pra pesagem, tá na doca 2"
+
+✅ Atualizado:
+• 1200-1 → Em pesagem (era Cadastrado) · 📍 doca 2</div>
+        <div class="msg in"><span class="who">Marcos</span>como tá a 4521?</div>
+        <div class="msg out">📦 4521 · Balança 300kg
+Status: Em separação há 5 dias
+Últimas movimentações:
+   04/10 09:12 · Em separação (Ana)</div>
+      </div>
+      <div class="steps">
+        <div class="step"><div><h3>Chegou a OS, manda o PDF</h3><p>O bot lê a Ordem de Serviço (PDF ou foto), separa os itens e cadastra cada um como produto, com cliente e prazo. Se a OS já estava cadastrada, ele avisa em vez de duplicar.</p></div></div>
+        <div class="step"><div><h3>Mexeu no produto, avisa do seu jeito</h3><p>Texto ou áudio, com gíria e erro de digitação: "embalei a 4521", "a 1200 saiu na transportadora", "4521 travou, falta o display". O bot confirma o que entendeu e registra quem informou e quando.</p></div></div>
+        <div class="step"><div><h3>Precisa saber, pergunta</h3><p>"Como tá a 4521?", "o que tá na pesagem?", "o que falta enviar?". A resposta sai direto da planilha, a IA não chuta status.</p></div></div>
+        <div class="step"><div><h3>O gestor recebe sem pedir</h3><p>Relatório toda segunda às 8h e alerta nos dias úteis às 9h com o que passou do limite de dias em cada etapa.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Etapas que o bot acompanha</div>
+    <h2>Do recebimento da OS <em>até a saída</em></h2>
+    <div class="statusbar">
+      <div class="status track">
+        <div class="st done"><i></i><span>Cadastrado</span><small>OS recebida</small></div>
+        <div class="st"><i></i><span>Em separação</span><small>limite 2 dias</small></div>
+        <div class="st"><i></i><span>Em pesagem</span><small>limite 1 dia</small></div>
+        <div class="st"><i></i><span>Em embalagem</span><small>limite 1 dia</small></div>
+        <div class="st"><i></i><span>Pronto para envio</span><small>limite 3 dias</small></div>
+        <div class="st done"><i></i><span>Enviado</span><small>saiu da empresa</small></div>
+      </div>
+    </div>
+    <div><span class="pend">⚠ Com pendência · qualquer etapa pode travar (falta peça, defeito, aguardando cliente), com o motivo registrado</span></div>
+    <p class="muted">Os limites são exemplos e ficam num campo só do fluxo, fácil de ajustar com a Digitron.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Entregas por fase</div>
+    <h2>As três fases da proposta, <em>já no fluxo</em></h2>
+    <div class="phases">
+      <div class="phase">
+        <div class="num">01</div>
+        <h3>MVP</h3>
+        <ul>
+          <li>Cadastro automático pelo PDF ou foto da OS</li>
+          <li>Atualização de status por texto em linguagem natural</li>
+          <li>Atualização por áudio (transcrição automática)</li>
+          <li>Histórico completo de quem mexeu e quando</li>
+        </ul>
+        <div class="when">Valida o fluxo no dia a dia real do setor</div>
+      </div>
+      <div class="phase">
+        <div class="num">02</div>
+        <h3>Relatórios e consultas</h3>
+        <ul>
+          <li>Relatório semanal automático para o gestor</li>
+          <li>Tempo médio por etapa e o gargalo da semana</li>
+          <li>Consulta rápida por produto ou OS</li>
+          <li>Lista por etapa: "o que tá na pesagem?"</li>
+        </ul>
+        <div class="when">Toda segunda 8h, ou a palavra <code>relatorio</code></div>
+      </div>
+      <div class="phase">
+        <div class="num">03</div>
+        <h3>Alertas proativos</h3>
+        <ul>
+          <li>Aviso diário do que passou do limite em cada etapa</li>
+          <li>Só manda mensagem quando tem algo parado</li>
+          <li>Consulta manual a qualquer hora</li>
+        </ul>
+        <div class="when">Dias úteis 9h, ou a palavra <code>parados</code></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Por dentro do n8n</div>
+    <h2>Como o fluxo <em>está montado</em></h2>
+    <div class="legend">
+      <span><span class="node wa">WhatsApp</span> mensagem enviada</span>
+      <span><span class="node ai">Gemini</span> leitura por IA</span>
+      <span><span class="node db">Planilha</span> leitura e gravação</span>
+    </div>
+    <div class="lanes">
+      <table>
+        <tr><th>Entrada</th><td><div class="chain"><span class="node">Webhook Evolution</span><span class="arrow">→</span><span class="node">Config</span><span class="arrow">→</span><span class="node">Normaliza mensagem</span><span class="arrow">→</span><span class="node">Autorizado? · Tipo</span></div></td></tr>
+        <tr><th>OS (PDF/foto)</th><td><div class="chain"><span class="node wa">"Lendo a OS…"</span><span class="arrow">→</span><span class="node">Baixa arquivo</span><span class="arrow">→</span><span class="node ai">Gemini lê a OS</span><span class="arrow">→</span><span class="node">Evita duplicada</span><span class="arrow">→</span><span class="node db">Produtos</span><span class="arrow">→</span><span class="node db">Historico</span><span class="arrow">→</span><span class="node wa">Confirma</span></div></td></tr>
+        <tr><th>Áudio</th><td><div class="chain"><span class="node">Baixa áudio</span><span class="arrow">→</span><span class="node ai">Gemini transcreve</span><span class="arrow">→</span><span class="node">segue como texto</span></div></td></tr>
+        <tr><th>Texto</th><td><div class="chain"><span class="node db">Lê Produtos</span><span class="arrow">→</span><span class="node ai">Gemini interpreta</span><span class="arrow">→</span><span class="node">Valida na planilha</span><span class="arrow">→</span><span class="node">Atualizar · Consultar · Listar · Esclarecer</span></div></td></tr>
+        <tr><th>Atualizar</th><td><div class="chain"><span class="node db">Atualiza Produtos</span><span class="arrow">→</span><span class="node db">Historico</span><span class="arrow">→</span><span class="node wa">Confirma</span></div></td></tr>
+        <tr><th>Consultar</th><td><div class="chain"><span class="node db">Lê Historico</span><span class="arrow">→</span><span class="node">Monta resposta com dados reais</span><span class="arrow">→</span><span class="node wa">Responde</span></div></td></tr>
+        <tr><th>Seg 8h</th><td><div class="chain"><span class="node db">Produtos + Historico</span><span class="arrow">→</span><span class="node">Calcula relatório</span><span class="arrow">→</span><span class="node wa">Gestor</span><span class="arrow">→</span><span class="node db">Relatorios</span></div></td></tr>
+        <tr><th>Dias úteis 9h</th><td><div class="chain"><span class="node db">Produtos</span><span class="arrow">→</span><span class="node">Acima do limite?</span><span class="arrow">→</span><span class="node wa">Alerta ao gestor</span></div></td></tr>
+      </table>
+    </div>
+    <p class="muted">A IA só lê e classifica. Tudo é conferido contra a planilha antes de gravar: código que não existe vira pergunta de volta, não registro errado. Só números e grupos liberados usam o bot, e em grupo ele não responde conversa que não tem a ver com a expedição.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Onde os dados ficam</div>
+    <h2>Uma planilha, <em>três abas</em></h2>
+    <div class="sheets">
+      <div class="sheet"><h3>Produtos <small>1 linha por produto</small></h3><div class="cols"><code>codigo</code><code>os</code><code>item</code><code>codigo_produto</code><code>numero_serie</code><code>descricao</code><code>quantidade</code><code>cliente</code><code>prazo_entrega</code><code>status</code><code>local</code><code>responsavel</code><code>data_entrada</code><code>ultima_atualizacao</code><code>observacoes</code></div></div>
+      <div class="sheet"><h3>Historico <small>auditoria</small></h3><div class="cols"><code>data_hora</code><code>codigo</code><code>os</code><code>acao</code><code>status_anterior</code><code>status_novo</code><code>local</code><code>detalhe</code><code>informado_por</code><code>telefone</code><code>mensagem_original</code></div></div>
+      <div class="sheet"><h3>Relatorios <small>1 linha por semana</small></h3><div class="cols"><code>data</code><code>em_andamento</code><code>cadastrados_7d</code><code>enviados_7d</code><code>movimentacoes_7d</code><code>acima_do_limite</code><code>ciclo_medio_horas</code><code>gargalo</code></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Para colocar no ar</div>
+    <h2>Configuração <em>em 5 passos</em></h2>
+    <div class="setup">
+      <div class="steps">
+        <div class="step"><div><h3>Planilha</h3><p>Criar as abas <code>Produtos</code>, <code>Historico</code> e <code>Relatorios</code> com os cabeçalhos acima na linha 1 e copiar o ID da URL.</p></div></div>
+        <div class="step"><div><h3>Evolution API</h3><p>Criar a instância, conectar o número da expedição pelo QR code e apontar o webhook para <code>/webhook/digitron-expedicao</code>, só com o evento <code>MESSAGES_UPSERT</code>.</p></div></div>
+        <div class="step"><div><h3>Credenciais</h3><p>Header Auth <code>apikey</code> (Evolution), Header Auth <code>x-goog-api-key</code> (Gemini) e OAuth2 do Google Sheets.</p></div></div>
+        <div class="step"><div><h3>Nó Config</h3><p>Preencher os campos ao lado. Os demais nós leem tudo dali.</p></div></div>
+        <div class="step"><div><h3>Teste e ativação</h3><p>Mandar "ajuda", depois uma OS em PDF, depois "como está a [nº]?". Funcionou, liberar só os números do time e ativar.</p></div></div>
+      </div>
+      <div class="config">
+        <table>
+          <tr><td>EVOLUTION_URL</td><td>Endereço do servidor da Evolution</td></tr>
+          <tr><td>EVOLUTION_INSTANCIA</td><td>Nome da instância, ex. digitron</td></tr>
+          <tr><td>PLANILHA_ID</td><td>ID da planilha do Google</td></tr>
+          <tr><td>DESTINO_RELATORIOS</td><td>Número do gestor ou ID do grupo (@g.us)</td></tr>
+          <tr><td>NUMEROS_AUTORIZADOS</td><td>Separados por vírgula. Vazio libera qualquer um, só para teste</td></tr>
+          <tr><td>GRUPOS_AUTORIZADOS</td><td>ID do grupo da expedição, se houver</td></tr>
+          <tr><td>RESPONDER_CONVERSA_EM_GRUPO</td><td>false: em grupo, ignora o que não é da expedição</td></tr>
+          <tr><td>LIMITES_DIAS</td><td>Dias tolerados por etapa antes do alerta</td></tr>
+          <tr><td>GEMINI_MODELO</td><td>gemini-2.5-flash (troca aqui se for descontinuado)</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="plano">
+    <div class="eyebrow">Plano de ação</div>
+    <h2>Tudo o que falta para o projeto <em>sair do papel</em></h2>
+    <p class="muted">A Digitron ainda não fechou: a proposta foi apresentada e o fluxo está pronto para teste. Abaixo está o que precisa ser conversado e feito, na ordem em que destrava o projeto. Os itens marcados ficam salvos neste navegador.</p>
+
+    <div class="plan">
+      <div class="block">
+        <div class="block-head"><span class="when-tag">Reunião 10/10 · Donato</span><h3>Conversar com a Digitron</h3></div>
+        <ul class="check">
+          <li><label><input type="checkbox" id="c1"><span><b>Pedir 2 ou 3 PDFs reais de OS</b><small>Sem eles não dá para calibrar a leitura. Pedir também uma OS com vários itens.</small></span></label></li>
+          <li><label><input type="checkbox" id="c2"><span><b>Como o time identifica cada produto</b><small>Nº da OS, nº de série ou código interno. Isso define a chave da planilha.</small></span></label></li>
+          <li><label><input type="checkbox" id="c3"><span><b>Mapear as etapas reais da expedição</b><small>Confirmar separação, pesagem, embalagem, pronto para envio e enviado. Ver se existe etapa a mais, como aferição ou nota fiscal.</small></span></label></li>
+          <li><label><input type="checkbox" id="c4"><span><b>Quanto tempo cada etapa pode levar</b><small>Serve para configurar os limites do alerta de produtos parados.</small></span></label></li>
+          <li><label><input type="checkbox" id="c5"><span><b>Quem vai usar e como</b><small>Quantos funcionários, grupo da expedição ou cada um no privado, e quem tem celular no posto.</small></span></label></li>
+          <li><label><input type="checkbox" id="c6"><span><b>Quem recebe o relatório e os alertas</b><small>O Donato, o tio (diretor industrial) ou os dois, e em que dia e horário.</small></span></label></li>
+          <li><label><input type="checkbox" id="c7"><span><b>Número de WhatsApp do bot</b><small>Chip novo só para a expedição ou um número que a empresa já tem, e quem fica com o aparelho.</small></span></label></li>
+          <li><label><input type="checkbox" id="c8"><span><b>Conta Google da planilha</b><small>Na conta da Digitron (recomendado, os dados são deles) ou na da Bevel durante o piloto.</small></span></label></li>
+          <li><label><input type="checkbox" id="c9"><span><b>Volume de OS por semana</b><small>Para estimar o custo de IA e por quanto tempo a planilha dá conta.</small></span></label></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><span class="when-tag">Técnico · Vitor</span><h3>Colocar no ar</h3></div>
+        <ul class="check">
+          <li><label><input type="checkbox" id="t1"><span><b>Subir a Evolution e conectar o número</b><small>Criar a instância, ler o QR code e apontar o webhook para o n8n.</small></span></label></li>
+          <li><label><input type="checkbox" id="t2"><span><b>Criar a planilha e as credenciais</b><small>Abas Produtos, Historico e Relatorios, e credenciais do Gemini, da Evolution e do Google Sheets.</small></span></label></li>
+          <li><label><input type="checkbox" id="t3"><span><b>Importar o workflow e preencher o Config</b><small>O fluxo ainda não foi importado num n8n de verdade. Ajustar os nós que derem erro na importação.</small></span></label></li>
+          <li><label><input type="checkbox" id="t4"><span><b>Calibrar com as OS reais</b><small>Rodar os PDFs da Digitron e ajustar o prompt de leitura até acertar todos os campos.</small></span></label></li>
+          <li><label><input type="checkbox" id="t5"><span><b>Teste interno com mensagens reais</b><small>Texto, áudio, foto torta, OS repetida, código errado e conversa fora do assunto no grupo.</small></span></label></li>
+          <li><label><input type="checkbox" id="t6"><span><b>Treinar o time em 10 minutos</b><small>Mostrar a mensagem de ajuda e 3 exemplos, e fixar o "ajuda" no grupo.</small></span></label></li>
+          <li><label><input type="checkbox" id="t7"><span><b>Piloto de 2 semanas e ajuste</b><small>Acompanhar o que o bot não entendeu, ajustar e só então ligar o relatório e os alertas para o gestor.</small></span></label></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><span class="when-tag">Sócios</span><h3>Decidir na Bevel</h3></div>
+        <ul class="check">
+          <li><label><input type="checkbox" id="d1"><span><b>Preço do projeto e da manutenção</b><small>Desenvolvimento mais 10% ao mês de manutenção, como nos outros clientes. O preço é passado por ligação.</small></span></label></li>
+          <li><label><input type="checkbox" id="d2"><span><b>Quem paga a infraestrutura</b><small>Servidor da Evolution, n8n e chave do Gemini: embutido na mensalidade ou cobrado à parte.</small></span></label></li>
+          <li><label><input type="checkbox" id="d3"><span><b>Piloto antes de cobrar ou cobrança no início</b><small>Com o Júnior Freitas a entrega veio antes da cobrança. Decidir se repete aqui.</small></span></label></li>
+          <li><label><input type="checkbox" id="d4"><span><b>Quem toca o quê</b><small>Vitor no n8n e na Evolution, Lucas no fechamento e no acompanhamento, Arthur no contrato e na cobrança.</small></span></label></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><span class="when-tag">Comercial e jurídico · Lucas e Arthur</span><h3>Fechar o negócio</h3></div>
+        <ul class="check">
+          <li><label><input type="checkbox" id="e1"><span><b>Atualizar a proposta</b><small>O PDF ainda fala em Telegram. Trocar para WhatsApp e incluir o áudio, que entrou como bônus.</small></span></label></li>
+          <li><label><input type="checkbox" id="e2"><span><b>Segunda reunião com proposta e preço</b><small>No modelo de venda em duas reuniões, o Lucas conduz o fechamento.</small></span></label></li>
+          <li><label><input type="checkbox" id="e3"><span><b>Contrato</b><small>Escopo das 3 fases, prazo, manutenção mensal, quem é dono dos dados e o que acontece se o número for bloqueado.</small></span></label></li>
+          <li><label><input type="checkbox" id="e4"><span><b>Combinar o faturamento</b><small>Hoje a Bevel fatura pelo CPF do Vitor, sem CNPJ próprio. Confirmar se a Digitron aceita.</small></span></label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="risks">
+      <h3>Riscos para ter no radar</h3>
+      <div class="todo">
+        <div><b>Adesão do time</b><span>Se o pessoal não avisar as movimentações, a planilha fica desatualizada como no controle manual. O piloto serve para medir isso.</span></div>
+        <div><b>Número bloqueado</b><span>A Evolution não é a API oficial da Meta. Usar chip dedicado e mandar mensagem só para o próprio time.</span></div>
+        <div><b>OS fora do padrão</b><span>OS escrita à mão ou foto torta pode não ser lida. O bot avisa e pede outra, mas vale saber como a OS chega hoje.</span></div>
+        <div><b>Planilha crescendo</b><span>Dá conta do volume de uma fábrica por muito tempo. Se passar de dezenas de milhares de linhas, migrar para banco de dados.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="import">
+    <div class="eyebrow">Importar no n8n</div>
+    <h2>Copie o workflow <em>e cole no n8n</em></h2>
+    <p class="muted">Abra um workflow vazio no n8n e use Ctrl+V na tela de edição. Os 65 nós entram já conectados. O arquivo também está em <span class="mono">BEVEL/Propostas/Digitron/digitron-expedicao-whatsapp.n8n.json</span>.</p>
+    <div class="row"><button id="copiar" type="button">Copiar JSON do workflow</button><span id="copiado" role="status"></span></div>
+    <textarea id="jsonbox" readonly aria-label="JSON do workflow"></textarea>
+  </section>
+
+  <footer><span><b>bevel</b> SYSTEMS · Fluxo de expedição Digitron</span><span>Outubro de 2026</span></footer>
+</div>
+
+<script type="application/json" id="wf">{
+  "name": "Digitron · Controle de Expedição (WhatsApp)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "digitron-expedicao",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "9c9708d1-c2fd-4724-bbd4-9438963f759d",
+      "name": "WhatsApp (Evolution API)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "6a44c217-dea6-4fb5-a81a-0a6c5714c9c8"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7283993e-658a-42f4-9cf5-fb36f73d33ed",
+              "name": "origem",
+              "value": "whatsapp",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "0cec4e22-6ee0-42a8-8b07-bb2b56d4ea54",
+      "name": "Origem: WhatsApp",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "fadb2529-546c-49ec-ada9-b33eaf13d451",
+      "name": "Toda segunda 8h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        1700
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "786f5d7a-4bdd-47ba-8fb7-38c5096a4256",
+              "name": "origem",
+              "value": "relatorio_semanal",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "62c71bd3-d517-4160-af43-cf572faebf4c",
+      "name": "Origem: Relatório semanal",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        1700
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1-5"
+            }
+          ]
+        }
+      },
+      "id": "1207128f-22e0-43ef-8e10-4b6a3b8a34f8",
+      "name": "Dias úteis 9h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        2050
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e3eb735e-b18c-4601-b119-56ba051d8710",
+              "name": "origem",
+              "value": "alerta_diario",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "31b99521-4bec-49c9-9633-4cf5f54f4c77",
+      "name": "Origem: Alerta diário",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        2050
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d20676cb-3cf9-40f5-b659-e686caba113a",
+              "name": "EVOLUTION_URL",
+              "value": "https://SEU-SERVIDOR-EVOLUTION.com.br",
+              "type": "string"
+            },
+            {
+              "id": "fe332be9-2e69-4481-91c6-dafe36d7fd58",
+              "name": "EVOLUTION_INSTANCIA",
+              "value": "digitron",
+              "type": "string"
+            },
+            {
+              "id": "c31fa8cc-0925-41a7-941a-7cfec97995d2",
+              "name": "PLANILHA_ID",
+              "value": "COLE_AQUI_O_ID_DA_PLANILHA",
+              "type": "string"
+            },
+            {
+              "id": "eafe6500-b513-4e40-8a82-2fb7081af673",
+              "name": "DESTINO_RELATORIOS",
+              "value": "5541999999999",
+              "type": "string"
+            },
+            {
+              "id": "35f2aed6-50b2-4cbd-96e7-0f3ff5c71cfe",
+              "name": "NUMEROS_AUTORIZADOS",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "056cd40b-6776-4af4-82db-e553f780fe24",
+              "name": "GRUPOS_AUTORIZADOS",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "d99a4d05-1591-42ca-8e55-5c606b9d252e",
+              "name": "RESPONDER_CONVERSA_EM_GRUPO",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "id": "ceb2dc32-e0d5-4db2-83dc-de07173fc70e",
+              "name": "GEMINI_MODELO",
+              "value": "gemini-2.5-flash",
+              "type": "string"
+            },
+            {
+              "id": "37de5548-bd0f-4dea-9ad3-2ad50dab6b98",
+              "name": "LIMITES_DIAS",
+              "value": "{\"Cadastrado\":2,\"Em separação\":2,\"Em pesagem\":1,\"Em embalagem\":1,\"Pronto para envio\":3,\"Com pendência\":1}",
+              "type": "string"
+            },
+            {
+              "id": "c54642ae-874f-40c2-b183-c03a514ed9a4",
+              "name": "LIMITE_PADRAO_DIAS",
+              "value": 3,
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "d6857e56-318a-43d3-b05f-8bfd9e7a2a09",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1fc398ea-b0fd-4d60-8f85-d354fd1c3054",
+                    "leftValue": "={{ $json.origem }}",
+                    "rightValue": "whatsapp",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "WhatsApp"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "83f392cc-f0e4-4976-bb7d-c3b49cc3d7cf",
+                    "leftValue": "={{ $json.origem }}",
+                    "rightValue": "relatorio_semanal",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Relatório semanal"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3566d22c-509b-454e-9786-2d75eea9f115",
+                    "leftValue": "={{ $json.origem }}",
+                    "rightValue": "alerta_diario",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Alerta diário"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3c8bf76f-a804-417c-82dc-427aa42121b5",
+      "name": "Rota por origem",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        720,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normaliza o payload do webhook da Evolution API (evento messages.upsert)\nconst cfg = $('Config').first().json;\nconst body = $json.body || {};\nconst data = body.data || {};\nconst key = data.key || {};\nconst msg = data.message || {};\n\nconst chat = key.remoteJid || '';\nconst isGroup = chat.endsWith('@g.us');\nconst senderJid = isGroup ? (key.participant || data.participant || '') : chat;\nconst telefone = senderJid.split('@')[0].replace(/\\D/g, '');\nconst nome = data.pushName || telefone;\n\nconst doc = msg.documentMessage || msg.documentWithCaptionMessage?.message?.documentMessage;\nconst img = msg.imageMessage;\nconst audio = msg.audioMessage;\nconst texto = (msg.conversation || msg.extendedTextMessage?.text || doc?.caption || img?.caption || '').trim();\n\nconst semAcento = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();\n\nlet tipo = 'outro';\nlet mime = '';\nlet comando = '';\nif ((body.event && body.event !== 'messages.upsert') || key.fromMe || chat === 'status@broadcast' || !chat) {\n  tipo = 'ignorar'; // eventos de sistema e mensagens do próprio bot\n} else if (doc && /pdf/i.test(doc.mimetype || '')) {\n  tipo = 'os'; mime = 'application/pdf';\n} else if (img) {\n  tipo = 'os'; mime = (img.mimetype || 'image/jpeg').split(';')[0];\n} else if (audio) {\n  tipo = 'audio'; mime = (audio.mimetype || 'audio/ogg').split(';')[0];\n} else if (texto) {\n  const t = semAcento(texto).replace(/^\\//, '');\n  const m = t.match(/^(ajuda|menu|start|comandos|relatorio|parados)$/);\n  if (m) {\n    tipo = 'comando';\n    comando = ['menu', 'start', 'comandos'].includes(m[1]) ? 'ajuda' : m[1];\n  } else {\n    tipo = 'texto';\n  }\n}\n\n// Autorização: lista vazia = libera todo mundo (modo de configuração)\nconst lista = s => String(s || '').split(',').map(x => x.trim()).filter(Boolean);\nconst numeros = lista(cfg.NUMEROS_AUTORIZADOS).map(n => n.replace(/\\D/g, ''));\nconst grupos = lista(cfg.GRUPOS_AUTORIZADOS);\n// compara os 8 últimos dígitos (resolve o 9º dígito e o DDI)\nconst fim = n => n.slice(-8);\nconst autorizado =\n  (numeros.length === 0 && grupos.length === 0) ||\n  (telefone.length >= 8 && numeros.some(n => fim(n) === fim(telefone))) ||\n  grupos.includes(chat);\n\nreturn [{\n  json: {\n    chat,\n    is_group: isGroup,\n    telefone,\n    nome,\n    texto,\n    tipo,\n    comando,\n    mime,\n    message_id: key.id || '',\n    autorizado,\n    base64: msg.base64 || data.base64 || null,\n  },\n}];\n"
+      },
+      "id": "8e64b5a1-9daa-4141-b1a4-9030768be5bb",
+      "name": "Normaliza mensagem",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e9a44694-6a2b-4803-a8e1-44c38a800a69",
+                    "leftValue": "={{ $json.tipo }}",
+                    "rightValue": "ignorar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Ignorar"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "081aae04-3a14-412d-8046-ae780155a12d",
+                    "leftValue": "={{ $json.autorizado }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Não autorizado"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4d09fce5-cd1f-40c1-951c-154a3b141aab",
+                    "leftValue": "={{ $json.tipo }}",
+                    "rightValue": "os",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "OS (PDF/foto)"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e2065801-6d81-485e-87b7-5eec84e48fd0",
+                    "leftValue": "={{ $json.tipo }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Áudio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d8fb0f17-edbb-4cab-af85-753fc34e35c2",
+                    "leftValue": "={{ $json.tipo }}",
+                    "rightValue": "comando",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Comando"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "af585d92-989d-4425-8a25-a159b6e8305c",
+                    "leftValue": "={{ $json.tipo }}",
+                    "rightValue": "texto",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texto"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Outro"
+        }
+      },
+      "id": "5f9235f4-9069-4876-bd02-805b54f65c1f",
+      "name": "Tipo de mensagem",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1200,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4834773b-5ef0-405e-925e-f7b39beef359",
+              "leftValue": "={{ $json.is_group }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "e47d5fc5-8492-4f02-b5a7-eba12811d809",
+      "name": "É conversa privada?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1440,
+        -150
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $('Normaliza mensagem').first().json.chat, text: 'Oi! Este número é o controle de expedição da Digitron e o seu WhatsApp ainda não está liberado. Peça ao responsável para cadastrar o número ' + $('Normaliza mensagem').first().json.telefone + '.' }) }}",
+        "options": {}
+      },
+      "id": "3ac72eb6-e7d1-42b2-9270-551169ffe232",
+      "name": "Avisa: sem autorização",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1680,
+        -150
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "48e15ba0-663b-4bed-ae0c-e85286c7d584",
+              "leftValue": "={{ $json.is_group }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "e45cf0dc-d427-40f6-ba1d-6da15c0737c7",
+      "name": "Privada? (outro tipo)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1440,
+        1250
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $('Normaliza mensagem').first().json.chat, text: 'Por enquanto eu entendo: PDF ou foto da OS, mensagem de texto e áudio. 😉 Manda *ajuda* para ver exemplos.' }) }}",
+        "options": {}
+      },
+      "id": "21f54cdc-02c6-4747-8e3e-5e9287269f3a",
+      "name": "Avisa: tipo não suportado",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1680,
+        1250
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $('Normaliza mensagem').first().json.chat, text: '📄 Recebi a OS, já estou lendo...' }) }}",
+        "options": {}
+      },
+      "id": "257e06f0-8267-4676-b28b-98886a8be8b3",
+      "name": "Avisa: lendo a OS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1440,
+        100
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/chat/getBase64FromMediaMessage/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: { key: { id: $('Normaliza mensagem').first().json.message_id } }, convertToMp4: false }) }}",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "77f99687-e15d-4916-954d-8168c20d2a4f",
+      "name": "Baixa arquivo da OS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1680,
+        100
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 2000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Monta a chamada ao Gemini para ler o PDF (ou a foto) da Ordem de Serviço\nconst m = $('Normaliza mensagem').first().json;\nconst b64 = $json.base64 || m.base64;\nconst mime = ($json.mimetype || m.mime || 'application/pdf').split(';')[0];\n\nif (!b64) {\n  return [{ json: { erro: 'Não consegui baixar o arquivo da OS.' } }];\n}\n\nconst prompt = `Você está lendo uma Ordem de Serviço (OS) da Digitron, fábrica de balanças.\nExtraia os dados exatamente como aparecem no documento. Nunca invente informação: se um campo não existir, devolva string vazia.\n\n- numero_os: número da Ordem de Serviço (só o número/código, sem \"OS\", \"Nº\" etc.)\n- cliente: nome do cliente/destinatário\n- data_os: data da OS no formato dd/mm/aaaa\n- prazo_entrega: prazo ou data de entrega prevista, se houver\n- observacoes: observações gerais relevantes para a expedição (transportadora, endereço de entrega, urgência...). Curto.\n- itens: um item para cada produto/linha da OS\n  - codigo_produto: código, modelo ou referência do produto\n  - numero_serie: número de série, se houver\n  - descricao: descrição curta do produto\n  - quantidade: quantidade (número)\n- legivel: false se o arquivo não for uma OS ou estiver ilegível\n- motivo: se legivel = false, explique em uma frase curta`;\n\nconst schema = {\n  type: 'OBJECT',\n  properties: {\n    legivel: { type: 'BOOLEAN' },\n    motivo: { type: 'STRING' },\n    numero_os: { type: 'STRING' },\n    cliente: { type: 'STRING' },\n    data_os: { type: 'STRING' },\n    prazo_entrega: { type: 'STRING' },\n    observacoes: { type: 'STRING' },\n    itens: {\n      type: 'ARRAY',\n      items: {\n        type: 'OBJECT',\n        properties: {\n          codigo_produto: { type: 'STRING' },\n          numero_serie: { type: 'STRING' },\n          descricao: { type: 'STRING' },\n          quantidade: { type: 'NUMBER' },\n        },\n        required: ['descricao'],\n      },\n    },\n  },\n  required: ['legivel', 'numero_os', 'itens'],\n};\n\nreturn [{\n  json: {\n    body: {\n      contents: [{ role: 'user', parts: [{ text: prompt }, { inlineData: { mimeType: mime, data: b64 } }] }],\n      generationConfig: { temperature: 0, responseMimeType: 'application/json', responseSchema: schema },\n    },\n  },\n}];\n"
+      },
+      "id": "4bdd6334-69ab-4fed-8daa-3eb046f9e4cb",
+      "name": "Prepara leitura da OS",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/{{ $('Config').first().json.GEMINI_MODELO }}:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.body) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "597f5b4e-5a28-4d05-89a0-f5e33433ac49",
+      "name": "Gemini: lê a OS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2160,
+        100
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Gemini API - Digitron"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Produtos",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "9862f1b5-38f4-4f90-bb99-8ef874673909",
+      "name": "Ler Produtos (OS)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2400,
+        100
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      },
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Transforma a leitura da OS em linhas de Produtos + Histórico, evitando duplicidade\nconst TZ = 'America/Sao_Paulo';\nconst agora = DateTime.now().setZone(TZ).toFormat('yyyy-MM-dd HH:mm:ss');\nconst m = $('Normaliza mensagem').first().json;\nconst resp = $('Gemini: lê a OS').first().json;\n\nconst falha = texto => [{ json: { ok: false, novos: [], historico: [], texto } }];\n\nif ($('Prepara leitura da OS').first().json.erro) {\n  return falha('⚠️ Não consegui baixar o arquivo da OS. Pode mandar de novo?');\n}\n\nlet os;\ntry {\n  const txt = (resp.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');\n  os = JSON.parse(txt);\n} catch (e) {\n  return falha('⚠️ Tive um problema pra ler essa OS agora. Pode mandar de novo daqui a pouco?');\n}\n\nif (!os.legivel) {\n  return falha(`⚠️ Não consegui ler essa OS${os.motivo ? `: ${os.motivo}` : ''}. Se for foto, tenta uma mais nítida ou manda o PDF.`);\n}\n\nconst numero = String(os.numero_os || '').trim().replace(/\\s+/g, '');\nif (!numero) {\n  return falha('⚠️ Não achei o número da OS no documento. Confere se é a OS certa?');\n}\n\nconst existentes = new Set(\n  $input.all().map(i => String(i.json.codigo ?? '').trim()).filter(Boolean)\n);\nconst jaExiste = [...existentes].some(c => c === numero || c.startsWith(numero + '-'));\nif (jaExiste) {\n  return falha(`ℹ️ A OS *${numero}* já está cadastrada. Se quiser saber como ela está, me pergunta: _como está a ${numero}?_`);\n}\n\nlet itens = Array.isArray(os.itens) && os.itens.length ? os.itens : [{ descricao: 'Item da OS', quantidade: 1 }];\n\n// Chave do produto: número da OS (1 item) ou OS-sequência (vários itens)\nconst novos = itens.map((it, i) => ({\n  codigo: itens.length === 1 ? numero : `${numero}-${i + 1}`,\n  os: numero,\n  item: String(i + 1),\n  codigo_produto: it.codigo_produto || '',\n  numero_serie: it.numero_serie || '',\n  descricao: it.descricao || '',\n  quantidade: String(it.quantidade ?? ''),\n  cliente: os.cliente || '',\n  prazo_entrega: os.prazo_entrega || '',\n  status: 'Cadastrado',\n  local: '',\n  responsavel: m.nome,\n  data_entrada: agora,\n  ultima_atualizacao: agora,\n  observacoes: os.observacoes || '',\n}));\n\nconst historico = novos.map(p => ({\n  data_hora: agora,\n  codigo: p.codigo,\n  os: p.os,\n  acao: 'cadastro',\n  status_anterior: '',\n  status_novo: 'Cadastrado',\n  local: '',\n  detalhe: 'Cadastro automático a partir da OS',\n  informado_por: m.nome,\n  telefone: m.telefone,\n  mensagem_original: m.mime === 'application/pdf' ? '[PDF da OS]' : '[Foto da OS]',\n}));\n\nconst linhas = novos.map(p =>\n  `• *${p.codigo}* — ${p.descricao}${p.quantidade ? ` (qtd ${p.quantidade})` : ''}`\n).join('\\n');\n\nconst texto = [\n  `📦 *OS ${numero} cadastrada*${os.cliente ? ` — ${os.cliente}` : ''}`,\n  os.prazo_entrega ? `Prazo: ${os.prazo_entrega}` : '',\n  '',\n  linhas,\n  '',\n  'Status inicial: *Cadastrado*.',\n  `Pra atualizar é só me mandar, por exemplo: _${novos[0].codigo} foi pra pesagem_`,\n].filter((l, i, a) => l !== '' || a[i - 1] !== '').join('\\n');\n\nreturn [{ json: { ok: true, novos, historico, texto } }];\n"
+      },
+      "id": "2e309dae-5eaa-4ed6-a084-325293f1a054",
+      "name": "Monta cadastro",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b7c34c12-dfef-4e38-8acc-3d46ed31b6cc",
+              "leftValue": "={{ $json.ok }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "56db2a22-cc2d-4798-9b7b-059ce47882cd",
+      "name": "Tem produto novo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2880,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return $json.novos.map(p => ({ json: p }));"
+      },
+      "id": "ca6d31a8-b6a7-4b35-8943-a9fb04028d33",
+      "name": "Separa produtos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3120,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Produtos",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "dfe08d5a-f74b-4f76-bb56-b2799a2fbde5",
+      "name": "Cadastra em Produtos",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3360,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return $('Monta cadastro').first().json.historico.map(h => ({ json: h }));"
+      },
+      "id": "d7308a71-03f7-4fa6-907e-8878f61265eb",
+      "name": "Separa histórico (cadastro)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3600,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Historico",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "ff12830c-1d2b-40d0-b07c-85b8543e02fb",
+      "name": "Histórico: cadastro",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3840,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $('Normaliza mensagem').first().json.chat, text: $('Monta cadastro').first().json.texto }) }}",
+        "options": {}
+      },
+      "id": "4b1f85fc-456d-4197-b98b-4ecf25ceab34",
+      "name": "Confirma cadastro",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4080,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $('Normaliza mensagem').first().json.chat, text: $('Monta cadastro').first().json.texto }) }}",
+        "options": {}
+      },
+      "id": "39e4dbff-364f-47d8-8cc6-52de4c2f7c6f",
+      "name": "Avisa: problema na OS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3120,
+        220
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/chat/getBase64FromMediaMessage/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: { key: { id: $('Normaliza mensagem').first().json.message_id } }, convertToMp4: false }) }}",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "0190d04b-aa17-4020-97c6-4a6e5b76faa5",
+      "name": "Baixa áudio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1440,
+        420
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 2000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Monta a chamada ao Gemini para transcrever o áudio do funcionário\nconst m = $('Normaliza mensagem').first().json;\nconst b64 = $json.base64 || m.base64;\nconst mime = ($json.mimetype || m.mime || 'audio/ogg').split(';')[0];\n\nif (!b64) {\n  return [{ json: { erro: 'sem_audio' } }];\n}\n\nconst prompt = `Transcreva este áudio em português do Brasil, exatamente como foi falado.\nÉ um funcionário da expedição de uma fábrica de balanças falando sobre produtos e Ordens de Serviço (OS).\nNúmeros de OS e códigos devem ser escritos em algarismos (ex.: \"quatro cinco dois um\" → 4521).\nDevolva só a transcrição, sem comentários.`;\n\nreturn [{\n  json: {\n    body: {\n      contents: [{ role: 'user', parts: [{ text: prompt }, { inlineData: { mimeType: mime, data: b64 } }] }],\n      generationConfig: { temperature: 0 },\n    },\n  },\n}];\n"
+      },
+      "id": "38282175-fdc4-475a-8ec1-85afc725c8f3",
+      "name": "Prepara transcrição",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/{{ $('Config').first().json.GEMINI_MODELO }}:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.body) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "b5c2be47-87fc-46f4-aca8-e22c86c877c7",
+      "name": "Gemini: transcreve áudio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1920,
+        420
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Gemini API - Digitron"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ponto único de entrada do texto: mensagem digitada ou áudio transcrito\nconst m = $('Normaliza mensagem').first().json;\nconst j = $json;\n\nif (m.tipo !== 'audio') {\n  return [{ json: { texto: m.texto, transcrito: false } }];\n}\n\nconst texto = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('').trim();\nreturn [{ json: { texto, transcrito: true } }];\n"
+      },
+      "id": "cdbd6fd6-c516-48cb-8563-a37a91cec860",
+      "name": "Texto da mensagem",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2160,
+        650
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Produtos",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "f1fef23f-b666-4e9a-8f87-00c9d6c4051d",
+      "name": "Ler Produtos (mensagem)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2400,
+        650
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      },
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Monta a chamada ao Gemini que interpreta a mensagem do funcionário\nconst TZ = 'America/Sao_Paulo';\nconst STATUS = ['Cadastrado', 'Em separação', 'Em pesagem', 'Em embalagem', 'Pronto para envio', 'Enviado', 'Com pendência'];\nconst m = $('Normaliza mensagem').first().json;\nconst { texto } = $('Texto da mensagem').first().json;\n\nfunction parseData(s) {\n  if (!s) return null;\n  s = String(s).trim();\n  for (const f of ['yyyy-MM-dd HH:mm:ss', 'dd/MM/yyyy HH:mm:ss', 'dd/MM/yyyy HH:mm']) {\n    const d = DateTime.fromFormat(s, f, { zone: TZ });\n    if (d.isValid) return d;\n  }\n  const d = DateTime.fromISO(s, { zone: TZ });\n  return d.isValid ? d : null;\n}\n\nconst agora = DateTime.now().setZone(TZ);\nconst produtos = $input.all().map(i => i.json).filter(p => String(p.codigo ?? '').trim());\n\n// Produtos em andamento + enviados nos últimos 15 dias (para consultas recentes)\nconst relevantes = produtos.filter(p => {\n  if (p.status !== 'Enviado') return true;\n  const d = parseData(p.ultima_atualizacao);\n  return d && agora.diff(d, 'days').days <= 15;\n}).slice(-400);\n\nconst catalogo = relevantes.length\n  ? relevantes.map(p => [p.codigo, `OS ${p.os}`, p.descricao, p.cliente, p.status, p.local || '-'].join(' | ')).join('\\n')\n  : '(nenhum produto cadastrado ainda)';\n\nconst prompt = `Você é o assistente de controle de expedição da Digitron, fábrica de balanças.\nFuncionários mandam mensagens curtas e informais pelo WhatsApp (às vezes com erro de digitação, às vezes transcritas de áudio) informando movimentações de produtos ou fazendo perguntas.\n\nStatus possíveis (use exatamente estes nomes):\n- Cadastrado: OS recebida, ainda não começou\n- Em separação\n- Em pesagem: inclui aferição, calibração, teste de peso\n- Em embalagem\n- Pronto para envio: embalado, aguardando transportadora ou retirada\n- Enviado: saiu da empresa (despachado, coletado, transportadora levou, cliente retirou)\n- Com pendência: travado por algum problema (falta peça, defeito, aguardando cliente...). Descreva o problema em \"observacao\".\n\nClassifique a intenção:\n- atualizar_status: a mensagem informa que um ou mais produtos mudaram de etapa.\n- consultar: pergunta sobre produtos ou OS específicos (\"como está a 4521?\", \"cadê a OS 1200?\"). Preencha codigos_consulta com os números citados.\n- listar: pergunta sobre um grupo (\"o que está na pesagem?\", \"o que falta enviar?\", \"o que tá com pendência?\"). Preencha filtro_status com um status da lista, ou \"Todos ativos\".\n- outro: qualquer outra coisa, ou quando não der pra identificar com segurança o produto ou o status. Escreva em \"resposta\" uma pergunta curta pedindo o que falta, ou responda a saudação.\n\nRegras:\n- O funcionário pode citar o número da OS. Se a OS tem vários itens (códigos 1200-1, 1200-2...) e ele não especificar o item, aplique a todos os itens daquela OS.\n- Se citar um número que não está na lista, mantenha o número como citado (o sistema avisa que não encontrou).\n- Nunca invente produto nem status.\n- local: preencha só se a mensagem disser onde o produto está (ex.: \"doca 2\", \"prateleira B\"). Senão, vazio.\n- resposta: curta, em português, tom de colega de trabalho. Só é usada quando a intenção for \"outro\".\n\nAgora: ${agora.toFormat(\"dd/MM/yyyy HH:mm\")}\nQuem mandou: ${m.nome}\n\nProdutos (codigo | OS | descrição | cliente | status | local):\n${catalogo}\n\nMensagem do funcionário:\n\"\"\"${texto || '(mensagem vazia ou áudio que não deu pra entender)'}\"\"\"`;\n\nconst schema = {\n  type: 'OBJECT',\n  properties: {\n    intencao: { type: 'STRING', enum: ['atualizar_status', 'consultar', 'listar', 'outro'] },\n    atualizacoes: {\n      type: 'ARRAY',\n      items: {\n        type: 'OBJECT',\n        properties: {\n          codigo: { type: 'STRING' },\n          status: { type: 'STRING', enum: STATUS },\n          local: { type: 'STRING' },\n          observacao: { type: 'STRING' },\n        },\n        required: ['codigo', 'status'],\n      },\n    },\n    codigos_consulta: { type: 'ARRAY', items: { type: 'STRING' } },\n    filtro_status: { type: 'STRING' },\n    resposta: { type: 'STRING' },\n  },\n  required: ['intencao'],\n};\n\nreturn [{\n  json: {\n    body: {\n      contents: [{ role: 'user', parts: [{ text: prompt }] }],\n      generationConfig: { temperature: 0, responseMimeType: 'application/json', responseSchema: schema },\n    },\n  },\n}];\n"
+      },
+      "id": "ac55979f-e7a9-4e88-a6de-123f3d499a24",
+      "name": "Prepara interpretação",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        650
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/{{ $('Config').first().json.GEMINI_MODELO }}:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.body) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "661ebe56-50e2-469a-bf56-e38f3e7ba8da",
+      "name": "Gemini: interpreta mensagem",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2880,
+        650
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Gemini API - Digitron"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Confere o que o Gemini entendeu contra a planilha antes de gravar qualquer coisa\nconst STATUS = ['Cadastrado', 'Em separação', 'Em pesagem', 'Em embalagem', 'Pronto para envio', 'Enviado', 'Com pendência'];\nconst cfg = $('Config').first().json;\nconst m = $('Normaliza mensagem').first().json;\nconst { texto, transcrito } = $('Texto da mensagem').first().json;\n\nconst produtos = $('Ler Produtos (mensagem)').all().map(i => i.json).filter(p => String(p.codigo ?? '').trim());\nconst porCodigo = new Map(produtos.map(p => [String(p.codigo).trim().toLowerCase(), p]));\n\nconst responderEmGrupo = cfg.RESPONDER_CONVERSA_EM_GRUPO === true || cfg.RESPONDER_CONVERSA_EM_GRUPO === 'true';\nconst base = { texto, transcrito, atualizacoes: [], nao_encontrados: [], codigos_consulta: [], filtro_status: '', texto_confirmacao: '' };\nconst prefixo = transcrito ? `🎙️ _\"${texto}\"_\\n\\n` : '';\n\nconst outro = (resposta, forcar = false) => [{\n  json: { ...base, intencao: 'outro', resposta: prefixo + resposta, responder: forcar || !m.is_group || responderEmGrupo },\n}];\n\nlet r;\ntry {\n  const txt = ($json.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');\n  r = JSON.parse(txt);\n} catch (e) {\n  return outro('⚠️ Tive um problema pra entender agora. Pode repetir?', true);\n}\n\nif (transcrito && !texto) {\n  return outro('⚠️ Não consegui entender o áudio. Pode mandar de novo ou escrever?', true);\n}\n\nif (r.intencao === 'atualizar_status') {\n  const validas = [];\n  const naoEncontrados = [];\n  for (const a of r.atualizacoes || []) {\n    const p = porCodigo.get(String(a.codigo || '').trim().toLowerCase());\n    if (!p) { naoEncontrados.push(a.codigo); continue; }\n    if (!STATUS.includes(a.status)) continue;\n    validas.push({\n      codigo: String(p.codigo),\n      os: String(p.os ?? ''),\n      descricao: p.descricao || '',\n      status_anterior: p.status || '',\n      status: a.status,\n      local: (a.local || '').trim(),\n      observacao: (a.observacao || '').trim(),\n    });\n  }\n\n  if (!validas.length) {\n    const lista = naoEncontrados.filter(Boolean).join(', ');\n    return outro(lista\n      ? `Não achei *${lista}* cadastrado. Confere o número? Se for OS nova, me manda o PDF dela primeiro.`\n      : 'Não entendi qual produto ou qual etapa. Pode mandar de novo com o número da OS? Ex.: _4521 foi pra embalagem_', true);\n  }\n\n  const linhas = validas.map(v => {\n    const de = v.status_anterior && v.status_anterior !== v.status ? ` (era ${v.status_anterior})` : '';\n    const onde = v.local ? ` · 📍 ${v.local}` : '';\n    const obs = v.status === 'Com pendência' && v.observacao ? `\\n   ⚠️ ${v.observacao}` : '';\n    return `• *${v.codigo}* → *${v.status}*${de}${onde}${obs}`;\n  });\n  if (naoEncontrados.length) linhas.push(`\\n❓ Não achei: ${naoEncontrados.join(', ')}`);\n\n  return [{\n    json: {\n      ...base,\n      intencao: 'atualizar_status',\n      atualizacoes: validas,\n      nao_encontrados: naoEncontrados,\n      texto_confirmacao: `${prefixo}✅ Atualizado:\\n${linhas.join('\\n')}`,\n      responder: true,\n    },\n  }];\n}\n\nif (r.intencao === 'consultar' || r.intencao === 'listar') {\n  return [{\n    json: {\n      ...base,\n      intencao: r.intencao,\n      codigos_consulta: (r.codigos_consulta || []).map(c => String(c).trim()).filter(Boolean),\n      filtro_status: r.filtro_status || 'Todos ativos',\n      prefixo,\n      responder: true,\n    },\n  }];\n}\n\nreturn outro(r.resposta || 'Não entendi. Me manda o número da OS e o que aconteceu com ela, ou o PDF de uma OS nova.');\n"
+      },
+      "id": "92acdc63-ee7c-4592-9369-090215576008",
+      "name": "Valida interpretação",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3120,
+        650
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4be2a87e-2740-4edc-8aa4-2e2fb24fbd9d",
+                    "leftValue": "={{ $json.intencao }}",
+                    "rightValue": "atualizar_status",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Atualizar status"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "2efdfff0-dd05-47e6-b577-569b7c1d26d5",
+                    "leftValue": "={{ $json.intencao }}",
+                    "rightValue": "consultar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Consultar"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "2fec9800-0f12-4f79-9ec8-776922b9630d",
+                    "leftValue": "={{ $json.intencao }}",
+                    "rightValue": "listar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Listar"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Outro / esclarecer"
+        }
+      },
+      "id": "a34d7dbb-c886-460d-bf82-33f38562d0fc",
+      "name": "Intenção",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        3360,
+        650
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Uma linha por produto a atualizar na aba Produtos (só as colunas que mudam)\nconst TZ = 'America/Sao_Paulo';\nconst agora = DateTime.now().setZone(TZ).toFormat('yyyy-MM-dd HH:mm:ss');\nconst m = $('Normaliza mensagem').first().json;\n\nreturn $json.atualizacoes.map(a => {\n  const linha = { codigo: a.codigo, status: a.status, responsavel: m.nome, ultima_atualizacao: agora };\n  if (a.local) linha.local = a.local;\n  if (a.status === 'Com pendência' && a.observacao) linha.observacoes = a.observacao;\n  return { json: linha };\n});\n"
+      },
+      "id": "d0057c3d-fefc-4fe7-be8f-5361da5ba1e2",
+      "name": "Separa atualizações",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3600,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Produtos",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "codigo"
+          ],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "4ba56c6c-7ea9-4ce4-acdc-d9e626d7ebdc",
+      "name": "Atualiza Produtos",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3840,
+        500
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Uma linha de auditoria por movimentação na aba Historico\nconst TZ = 'America/Sao_Paulo';\nconst agora = DateTime.now().setZone(TZ).toFormat('yyyy-MM-dd HH:mm:ss');\nconst m = $('Normaliza mensagem').first().json;\nconst v = $('Valida interpretação').first().json;\n\nreturn v.atualizacoes.map(a => ({\n  json: {\n    data_hora: agora,\n    codigo: a.codigo,\n    os: a.os,\n    acao: 'status',\n    status_anterior: a.status_anterior,\n    status_novo: a.status,\n    local: a.local,\n    detalhe: a.observacao,\n    informado_por: m.nome,\n    telefone: m.telefone,\n    mensagem_original: (v.transcrito ? '[áudio] ' : '') + v.texto,\n  },\n}));\n"
+      },
+      "id": "bfe6e384-23c3-4f7a-a26f-085c0d805531",
+      "name": "Separa histórico (status)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4080,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Historico",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "2fae6a8a-d9df-4f50-b128-30123527be73",
+      "name": "Histórico: status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4320,
+        500
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $('Normaliza mensagem').first().json.chat, text: $('Valida interpretação').first().json.texto_confirmacao }) }}",
+        "options": {}
+      },
+      "id": "e6f2cdb5-bc93-4315-8a2d-20bfb192f091",
+      "name": "Confirma atualização",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4560,
+        500
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Historico",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "952f084a-0700-450d-99aa-c20425a98535",
+      "name": "Ler Histórico (consulta)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3600,
+        700
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      },
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Responde consultas com dados da planilha (nada inventado pela IA)\nconst TZ = 'America/Sao_Paulo';\nconst v = $('Valida interpretação').first().json;\nconst produtos = $('Ler Produtos (mensagem)').all().map(i => i.json).filter(p => String(p.codigo ?? '').trim());\nconst historico = $input.all().map(i => i.json).filter(h => String(h.codigo ?? '').trim());\nconst agora = DateTime.now().setZone(TZ);\n\nfunction parseData(s) {\n  if (!s) return null;\n  s = String(s).trim();\n  for (const f of ['yyyy-MM-dd HH:mm:ss', 'dd/MM/yyyy HH:mm:ss', 'dd/MM/yyyy HH:mm']) {\n    const d = DateTime.fromFormat(s, f, { zone: TZ });\n    if (d.isValid) return d;\n  }\n  const d = DateTime.fromISO(s, { zone: TZ });\n  return d.isValid ? d : null;\n}\nconst curta = d => (d ? d.toFormat('dd/MM HH:mm') : '-');\nfunction tempo(d) {\n  if (!d) return '-';\n  const h = agora.diff(d, 'hours').hours;\n  if (h < 1) return 'menos de 1h';\n  if (h < 24) return `${Math.floor(h)}h`;\n  const dias = Math.floor(h / 24);\n  return dias === 1 ? '1 dia' : `${dias} dias`;\n}\n\nlet texto;\n\nif (v.intencao === 'consultar') {\n  const achados = [];\n  const naoAchados = [];\n  for (const c of v.codigos_consulta) {\n    const alvo = c.toLowerCase();\n    const lista = produtos.filter(p => String(p.codigo).toLowerCase() === alvo || String(p.os).toLowerCase() === alvo);\n    if (lista.length) achados.push(...lista.filter(p => !achados.includes(p)));\n    else naoAchados.push(c);\n  }\n\n  const cards = achados.slice(0, 10).map(p => {\n    const desde = parseData(p.ultima_atualizacao);\n    const movs = historico\n      .filter(h => String(h.codigo) === String(p.codigo))\n      .sort((a, b) => (parseData(b.data_hora)?.toMillis() || 0) - (parseData(a.data_hora)?.toMillis() || 0))\n      .slice(0, 4)\n      .map(h => `   ${curta(parseData(h.data_hora))} · ${h.status_novo}${h.informado_por ? ` (${h.informado_por})` : ''}`);\n    return [\n      `📦 *${p.codigo}* — ${p.descricao || 'sem descrição'}`,\n      p.cliente ? `Cliente: ${p.cliente}` : '',\n      `Status: *${p.status}* há ${tempo(desde)}${p.local ? ` · 📍 ${p.local}` : ''}`,\n      p.observacoes && p.status === 'Com pendência' ? `⚠️ ${p.observacoes}` : '',\n      movs.length ? `Últimas movimentações:\\n${movs.join('\\n')}` : '',\n    ].filter(Boolean).join('\\n');\n  });\n\n  texto = cards.join('\\n\\n');\n  if (naoAchados.length) texto += `${texto ? '\\n\\n' : ''}❓ Não achei: ${naoAchados.join(', ')}`;\n  if (!texto) texto = 'Me diz o número da OS que você quer consultar. Ex.: _como está a 4521?_';\n} else {\n  const filtro = v.filtro_status;\n  const lista = produtos\n    .filter(p => (filtro && filtro !== 'Todos ativos' ? p.status === filtro : p.status !== 'Enviado'))\n    .map(p => ({ ...p, desde: parseData(p.ultima_atualizacao) }))\n    .sort((a, b) => (a.desde?.toMillis() || 0) - (b.desde?.toMillis() || 0));\n\n  const titulo = filtro && filtro !== 'Todos ativos' ? `*${filtro}*` : '*em andamento*';\n  if (!lista.length) {\n    texto = `Nenhum produto ${titulo} agora. ✅`;\n  } else {\n    const linhas = lista.slice(0, 30).map(p =>\n      `• *${p.codigo}* — ${p.descricao || ''}${filtro === 'Todos ativos' || !filtro ? ` · ${p.status}` : ''} · há ${tempo(p.desde)}`\n    );\n    texto = `📋 ${lista.length} produto(s) ${titulo} (mais antigo primeiro):\\n${linhas.join('\\n')}`;\n    if (lista.length > 30) texto += `\\n…e mais ${lista.length - 30}.`;\n  }\n}\n\nreturn [{ json: { texto: (v.prefixo || '') + texto } }];\n"
+      },
+      "id": "840fc9a1-8a9c-4654-8535-4b1ee4f6095d",
+      "name": "Monta resposta da consulta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3840,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $('Normaliza mensagem').first().json.chat, text: $json.texto }) }}",
+        "options": {}
+      },
+      "id": "f14548db-cf5c-4cf4-b023-9f32d0e14d12",
+      "name": "Responde consulta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4080,
+        700
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "419e32fd-4ca5-42d4-9686-7556a4da4ba7",
+              "leftValue": "={{ $json.responder }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6067427a-e655-46c4-8bbe-d585cc21b975",
+      "name": "Deve responder?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3600,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $('Normaliza mensagem').first().json.chat, text: $json.resposta }) }}",
+        "options": {}
+      },
+      "id": "ae6fe07c-a511-4aa1-822a-a533b3862cfc",
+      "name": "Responde / pede esclarecimento",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3840,
+        900
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b8889a42-5bde-4779-abe3-02268bef15aa",
+                    "leftValue": "={{ $json.comando }}",
+                    "rightValue": "relatorio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Relatório"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1f890b3b-5a3b-466c-8e08-5091a94bfd59",
+                    "leftValue": "={{ $json.comando }}",
+                    "rightValue": "parados",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Parados"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Ajuda"
+        }
+      },
+      "id": "499d2faa-8da9-48d8-ad29-cdde3ea8d1b6",
+      "name": "Qual comando?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1440,
+        1050
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $('Normaliza mensagem').first().json.chat, text: \"🤖 *Controle de Expedição — Digitron*\\n\\n📄 *Cadastrar OS:* manda o PDF (ou uma foto) da Ordem de Serviço.\\n\\n🔄 *Atualizar:* escreve ou manda áudio, do seu jeito:\\n• _4521 foi pra pesagem_\\n• _embalei a 4521 e a 4530, tão na doca 2_\\n• _OS 1200 saiu na transportadora_\\n• _4521 travou, falta o display_\\n\\n🔎 *Consultar:*\\n• _como está a 4521?_\\n• _o que tá na pesagem?_\\n• _o que falta enviar?_\\n\\n📊 *relatorio* — resumo da expedição\\n⚠️ *parados* — produtos parados além do limite\" }) }}",
+        "options": {}
+      },
+      "id": "95cbdf01-d083-4dd4-826f-60e9ec939501",
+      "name": "Envia ajuda",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1680,
+        1200
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "jsCode": "// Quem recebe: quem pediu pelo WhatsApp, ou o gestor quando é rotina agendada\nconst cfg = $('Config').first().json;\nconst viaWhatsApp = cfg.origem === 'whatsapp';\nreturn [{\n  json: {\n    origem: cfg.origem,\n    destino: viaWhatsApp ? $('Normaliza mensagem').first().json.chat : String(cfg.DESTINO_RELATORIOS),\n  },\n}];\n"
+      },
+      "id": "338d4867-400c-4bea-aa78-c83137eafee9",
+      "name": "Destino do relatório",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        1650
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Produtos",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "2c393253-5dd4-46a1-bde9-9dfdd2aa5a29",
+      "name": "Ler Produtos (relatório)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2160,
+        1650
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      },
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Historico",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "7609638f-7bcb-4666-a4db-43f6db2af480",
+      "name": "Ler Histórico (relatório)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2400,
+        1650
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      },
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Relatório semanal: status atual, movimento da semana, gargalos e produtos parados\nconst TZ = 'America/Sao_Paulo';\nconst STATUS = ['Cadastrado', 'Em separação', 'Em pesagem', 'Em embalagem', 'Pronto para envio', 'Enviado', 'Com pendência'];\nconst cfg = $('Config').first().json;\nconst { destino, origem } = $('Destino do relatório').first().json;\nconst produtos = $('Ler Produtos (relatório)').all().map(i => i.json).filter(p => String(p.codigo ?? '').trim());\nconst historico = $input.all().map(i => i.json).filter(h => String(h.codigo ?? '').trim());\nconst agora = DateTime.now().setZone(TZ);\n\nfunction parseData(s) {\n  if (!s) return null;\n  s = String(s).trim();\n  for (const f of ['yyyy-MM-dd HH:mm:ss', 'dd/MM/yyyy HH:mm:ss', 'dd/MM/yyyy HH:mm']) {\n    const d = DateTime.fromFormat(s, f, { zone: TZ });\n    if (d.isValid) return d;\n  }\n  const d = DateTime.fromISO(s, { zone: TZ });\n  return d.isValid ? d : null;\n}\nconst fmtHoras = h => (h < 24 ? `${Math.round(h)}h` : `${(h / 24).toFixed(1).replace('.', ',')} dias`);\n\nlet limites = {};\ntry { limites = JSON.parse(cfg.LIMITES_DIAS || '{}'); } catch (e) {}\nconst limitePadrao = Number(cfg.LIMITE_PADRAO_DIAS) || 3;\n\nconst semana = agora.minus({ days: 7 });\nconst mes = agora.minus({ days: 30 });\nconst hist = historico.map(h => ({ ...h, d: parseData(h.data_hora) })).filter(h => h.d);\n\n// 1. Retrato atual\nconst ativos = produtos.filter(p => p.status !== 'Enviado');\nconst porStatus = STATUS.filter(s => s !== 'Enviado')\n  .map(s => [s, ativos.filter(p => p.status === s).length])\n  .filter(([, n]) => n > 0);\n\n// 2. Movimento da semana\nconst h7 = hist.filter(h => h.d >= semana);\nconst cadastrados = h7.filter(h => h.acao === 'cadastro').length;\nconst enviados = h7.filter(h => h.status_novo === 'Enviado').length;\nconst movimentacoes = h7.filter(h => h.acao === 'status').length;\nconst porPessoa = {};\nh7.forEach(h => { if (h.informado_por) porPessoa[h.informado_por] = (porPessoa[h.informado_por] || 0) + 1; });\nconst topPessoas = Object.entries(porPessoa).sort((a, b) => b[1] - a[1]).slice(0, 5);\n\n// 3. Tempo médio em cada etapa (últimos 30 dias) → aponta o gargalo\nconst porCodigo = {};\nhist.forEach(h => { (porCodigo[h.codigo] = porCodigo[h.codigo] || []).push(h); });\nconst somaEtapa = {};\nconst ciclos = [];\nObject.values(porCodigo).forEach(lista => {\n  lista.sort((a, b) => a.d.toMillis() - b.d.toMillis());\n  for (let i = 0; i < lista.length - 1; i++) {\n    const atual = lista[i], prox = lista[i + 1];\n    if (prox.d < mes || !atual.status_novo || atual.status_novo === 'Enviado') continue;\n    const horas = prox.d.diff(atual.d, 'hours').hours;\n    const e = (somaEtapa[atual.status_novo] = somaEtapa[atual.status_novo] || { total: 0, n: 0 });\n    e.total += horas; e.n += 1;\n  }\n  const inicio = lista.find(h => h.acao === 'cadastro');\n  const envio = lista.find(h => h.status_novo === 'Enviado');\n  if (inicio && envio && envio.d >= mes) ciclos.push(envio.d.diff(inicio.d, 'hours').hours);\n});\nconst etapas = Object.entries(somaEtapa).map(([s, e]) => [s, e.total / e.n]).sort((a, b) => b[1] - a[1]);\nconst gargalo = etapas[0];\nconst cicloMedio = ciclos.length ? ciclos.reduce((a, b) => a + b, 0) / ciclos.length : null;\n\n// 4. Parados há mais tempo\nconst parados = ativos\n  .map(p => {\n    const d = parseData(p.ultima_atualizacao);\n    const dias = d ? agora.diff(d, 'days').days : 0;\n    const limite = Number(limites[p.status] ?? limitePadrao);\n    return { ...p, dias, acima: dias > limite };\n  })\n  .sort((a, b) => b.dias - a.dias);\nconst acimaLimite = parados.filter(p => p.acima).length;\n\n// Texto (formatação do WhatsApp)\nconst L = [];\nL.push(`📊 *Relatório da Expedição — Digitron*`);\nL.push(`_${semana.toFormat('dd/MM')} a ${agora.toFormat('dd/MM/yyyy')}_`);\nL.push('');\nL.push(`*Em andamento agora: ${ativos.length}*`);\nporStatus.forEach(([s, n]) => L.push(`• ${s}: ${n}`));\nL.push('');\nL.push(`*Últimos 7 dias*`);\nL.push(`• OS/itens cadastrados: ${cadastrados}`);\nL.push(`• Enviados: ${enviados}`);\nL.push(`• Movimentações registradas: ${movimentacoes}`);\nif (topPessoas.length) L.push(`• Quem mais registrou: ${topPessoas.map(([n, q]) => `${n} (${q})`).join(', ')}`);\nL.push('');\nif (etapas.length) {\n  L.push(`*Tempo médio por etapa (30 dias)*`);\n  etapas.forEach(([s, h]) => L.push(`• ${s}: ${fmtHoras(h)}`));\n  if (cicloMedio !== null) L.push(`• Ciclo completo (cadastro → envio): ${fmtHoras(cicloMedio)}`);\n  if (gargalo) L.push(`🔎 Gargalo: *${gargalo[0]}*`);\n  L.push('');\n}\nif (parados.length) {\n  L.push(`*Parados há mais tempo*${acimaLimite ? ` (${acimaLimite} acima do limite)` : ''}`);\n  parados.slice(0, 10).forEach(p =>\n    L.push(`${p.acima ? '⚠️' : '•'} *${p.codigo}* — ${p.descricao || ''} · ${p.status} há ${Math.floor(p.dias)} dia(s)`)\n  );\n} else {\n  L.push('Nada parado na expedição. ✅');\n}\n\nreturn [{\n  json: {\n    destino,\n    origem,\n    texto: L.join('\\n'),\n    linha_relatorio: {\n      data: agora.toFormat('yyyy-MM-dd HH:mm:ss'),\n      em_andamento: ativos.length,\n      cadastrados_7d: cadastrados,\n      enviados_7d: enviados,\n      movimentacoes_7d: movimentacoes,\n      acima_do_limite: acimaLimite,\n      ciclo_medio_horas: cicloMedio === null ? '' : Math.round(cicloMedio),\n      gargalo: gargalo ? gargalo[0] : '',\n    },\n  },\n}];\n"
+      },
+      "id": "1d13b97d-c7b3-4ca9-8261-776c718e5d0d",
+      "name": "Monta relatório",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        1650
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $json.destino, text: $json.texto }) }}",
+        "options": {}
+      },
+      "id": "cbf56221-fd32-4587-910d-02e384973510",
+      "name": "Envia relatório",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2880,
+        1650
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "975a7601-0b35-4021-bbcf-4cee55855c4c",
+              "leftValue": "={{ $('Monta relatório').first().json.origem }}",
+              "rightValue": "relatorio_semanal",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "dc303bb7-83aa-47ae-90fe-4a8adcd860fd",
+      "name": "É o relatório semanal?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3120,
+        1650
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: $('Monta relatório').first().json.linha_relatorio }];"
+      },
+      "id": "4da3816c-2deb-4a82-aa84-41a75387c27c",
+      "name": "Linha do relatório",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3360,
+        1650
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Relatorios",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "d9cfd313-9a71-49ef-ab98-50145f3a3cc6",
+      "name": "Salva em Relatorios",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3600,
+        1650
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Quem recebe: quem pediu pelo WhatsApp, ou o gestor quando é rotina agendada\nconst cfg = $('Config').first().json;\nconst viaWhatsApp = cfg.origem === 'whatsapp';\nreturn [{\n  json: {\n    origem: cfg.origem,\n    destino: viaWhatsApp ? $('Normaliza mensagem').first().json.chat : String(cfg.DESTINO_RELATORIOS),\n  },\n}];\n"
+      },
+      "id": "f1fd8a48-c6b9-448d-895e-589f527e2619",
+      "name": "Destino do alerta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        2050
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config').first().json.PLANILHA_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Produtos",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "0cfcef1d-0d7b-45a8-8c26-d15d58a36bd5",
+      "name": "Ler Produtos (alerta)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2160,
+        2050
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Digitron"
+        }
+      },
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Alerta de produtos parados além do limite de cada etapa\nconst TZ = 'America/Sao_Paulo';\nconst cfg = $('Config').first().json;\nconst { destino, origem } = $('Destino do alerta').first().json;\nconst produtos = $input.all().map(i => i.json).filter(p => String(p.codigo ?? '').trim());\nconst agora = DateTime.now().setZone(TZ);\n\nfunction parseData(s) {\n  if (!s) return null;\n  s = String(s).trim();\n  for (const f of ['yyyy-MM-dd HH:mm:ss', 'dd/MM/yyyy HH:mm:ss', 'dd/MM/yyyy HH:mm']) {\n    const d = DateTime.fromFormat(s, f, { zone: TZ });\n    if (d.isValid) return d;\n  }\n  const d = DateTime.fromISO(s, { zone: TZ });\n  return d.isValid ? d : null;\n}\n\nlet limites = {};\ntry { limites = JSON.parse(cfg.LIMITES_DIAS || '{}'); } catch (e) {}\nconst limitePadrao = Number(cfg.LIMITE_PADRAO_DIAS) || 3;\n\nconst parados = produtos\n  .filter(p => p.status !== 'Enviado')\n  .map(p => {\n    const d = parseData(p.ultima_atualizacao);\n    const dias = d ? agora.diff(d, 'days').days : 0;\n    return { ...p, dias, limite: Number(limites[p.status] ?? limitePadrao) };\n  })\n  .filter(p => p.dias > p.limite)\n  .sort((a, b) => b.dias - a.dias);\n\n// Na rotina diária, só manda mensagem se tiver algo parado\nif (!parados.length && origem !== 'whatsapp') return [];\n\nlet texto;\nif (!parados.length) {\n  texto = '✅ Nenhum produto parado além do limite agora.';\n} else {\n  const linhas = parados.slice(0, 25).map(p => {\n    const obs = p.status === 'Com pendência' && p.observacoes ? ` — ${p.observacoes}` : '';\n    return `• *${p.codigo}* ${p.descricao || ''} · *${p.status}* há ${Math.floor(p.dias)} dia(s) (limite ${p.limite})${p.local ? ` · 📍 ${p.local}` : ''}${obs}`;\n  });\n  texto = `⚠️ *${parados.length} produto(s) parado(s) além do limite*\\n\\n${linhas.join('\\n')}`;\n  if (parados.length > 25) texto += `\\n…e mais ${parados.length - 25}.`;\n}\n\nreturn [{ json: { destino, texto } }];\n"
+      },
+      "id": "4ef68cbe-3966-49f3-b216-178b7e4b6bab",
+      "name": "Verifica produtos parados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        2050
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.EVOLUTION_URL }}/message/sendText/{{ $('Config').first().json.EVOLUTION_INSTANCIA }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ number: $json.destino, text: $json.texto }) }}",
+        "options": {}
+      },
+      "id": "2bb2767b-5239-44b0-860b-1aab606a1c22",
+      "name": "Envia alerta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2640,
+        2050
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Evolution API - Digitron"
+        }
+      },
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "content": "## ⚙️ Configuração\nPreencha o nó **Config** antes de ativar:\n- EVOLUTION_URL / INSTANCIA\n- PLANILHA_ID (abas Produtos, Historico, Relatorios)\n- DESTINO_RELATORIOS (número ou id do grupo @g.us)\n- NUMEROS_AUTORIZADOS / GRUPOS_AUTORIZADOS (vazio = libera todos, só pra teste)\n\nCredenciais: Evolution (header `apikey`), Gemini (header `x-goog-api-key`), Google Sheets OAuth2.",
+        "height": 440,
+        "width": 300,
+        "color": 4
+      },
+      "id": "36b4c225-8494-416c-be69-ff965e456842",
+      "name": "Nota 60",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        440,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Fase 1 · Cadastro da OS\nPDF ou foto da OS → Gemini extrai número, cliente, itens → grava em **Produtos** + **Historico** → confirma no WhatsApp.\nChave: nº da OS (1 item) ou OS-1, OS-2... (vários itens). Não cadastra OS repetida.",
+        "height": 120,
+        "width": 1000,
+        "color": 5
+      },
+      "id": "3b6de786-9c51-4c54-ba02-a0aae92b178d",
+      "name": "Nota 61",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Fase 1/2 · Mensagem em linguagem natural (texto ou áudio)\nGemini classifica: atualizar status · consultar · listar · outro. Tudo é conferido contra a planilha antes de gravar, e as consultas são respondidas com os dados da planilha (a IA não inventa status).",
+        "height": 120,
+        "width": 1200,
+        "color": 5
+      },
+      "id": "2b716a19-df66-433e-9e92-2535e790934e",
+      "name": "Nota 62",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2140,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Fase 2 · Relatório\nToda segunda 8h para o gestor, ou sob demanda com a palavra *relatorio*.\nStatus atual, movimento da semana, tempo médio por etapa (gargalo) e parados há mais tempo. Histórico salvo na aba Relatorios.",
+        "height": 140,
+        "width": 1000,
+        "color": 6
+      },
+      "id": "58a4b5ed-3a4b-4b18-a279-6c6a3438483c",
+      "name": "Nota 63",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        1470
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Fase 3 · Alertas proativos\nDias úteis 9h: avisa o gestor dos produtos parados além do limite de cada etapa (LIMITES_DIAS no Config). Só manda se houver algo parado. Sob demanda: *parados*.",
+        "height": 120,
+        "width": 1000,
+        "color": 3
+      },
+      "id": "3088ca6a-130e-4d6e-92c0-3a7b0c6f79a6",
+      "name": "Nota 64",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        1890
+      ]
+    }
+  ],
+  "connections": {
+    "WhatsApp (Evolution API)": {
+      "main": [
+        [
+          {
+            "node": "Origem: WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Origem: WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Toda segunda 8h": {
+      "main": [
+        [
+          {
+            "node": "Origem: Relatório semanal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Origem: Relatório semanal": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dias úteis 9h": {
+      "main": [
+        [
+          {
+            "node": "Origem: Alerta diário",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Origem: Alerta diário": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Rota por origem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rota por origem": {
+      "main": [
+        [
+          {
+            "node": "Normaliza mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Destino do relatório",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Destino do alerta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normaliza mensagem": {
+      "main": [
+        [
+          {
+            "node": "Tipo de mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tipo de mensagem": {
+      "main": [
+        [],
+        [
+          {
+            "node": "É conversa privada?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Avisa: lendo a OS",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baixa áudio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Qual comando?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Texto da mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Privada? (outro tipo)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É conversa privada?": {
+      "main": [
+        [
+          {
+            "node": "Avisa: sem autorização",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Privada? (outro tipo)": {
+      "main": [
+        [
+          {
+            "node": "Avisa: tipo não suportado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Avisa: lendo a OS": {
+      "main": [
+        [
+          {
+            "node": "Baixa arquivo da OS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baixa arquivo da OS": {
+      "main": [
+        [
+          {
+            "node": "Prepara leitura da OS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepara leitura da OS": {
+      "main": [
+        [
+          {
+            "node": "Gemini: lê a OS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini: lê a OS": {
+      "main": [
+        [
+          {
+            "node": "Ler Produtos (OS)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ler Produtos (OS)": {
+      "main": [
+        [
+          {
+            "node": "Monta cadastro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Monta cadastro": {
+      "main": [
+        [
+          {
+            "node": "Tem produto novo?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tem produto novo?": {
+      "main": [
+        [
+          {
+            "node": "Separa produtos",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Avisa: problema na OS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Separa produtos": {
+      "main": [
+        [
+          {
+            "node": "Cadastra em Produtos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cadastra em Produtos": {
+      "main": [
+        [
+          {
+            "node": "Separa histórico (cadastro)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Separa histórico (cadastro)": {
+      "main": [
+        [
+          {
+            "node": "Histórico: cadastro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Histórico: cadastro": {
+      "main": [
+        [
+          {
+            "node": "Confirma cadastro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baixa áudio": {
+      "main": [
+        [
+          {
+            "node": "Prepara transcrição",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepara transcrição": {
+      "main": [
+        [
+          {
+            "node": "Gemini: transcreve áudio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini: transcreve áudio": {
+      "main": [
+        [
+          {
+            "node": "Texto da mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Texto da mensagem": {
+      "main": [
+        [
+          {
+            "node": "Ler Produtos (mensagem)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ler Produtos (mensagem)": {
+      "main": [
+        [
+          {
+            "node": "Prepara interpretação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepara interpretação": {
+      "main": [
+        [
+          {
+            "node": "Gemini: interpreta mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini: interpreta mensagem": {
+      "main": [
+        [
+          {
+            "node": "Valida interpretação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valida interpretação": {
+      "main": [
+        [
+          {
+            "node": "Intenção",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intenção": {
+      "main": [
+        [
+          {
+            "node": "Separa atualizações",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ler Histórico (consulta)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ler Histórico (consulta)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Deve responder?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Separa atualizações": {
+      "main": [
+        [
+          {
+            "node": "Atualiza Produtos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualiza Produtos": {
+      "main": [
+        [
+          {
+            "node": "Separa histórico (status)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Separa histórico (status)": {
+      "main": [
+        [
+          {
+            "node": "Histórico: status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Histórico: status": {
+      "main": [
+        [
+          {
+            "node": "Confirma atualização",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ler Histórico (consulta)": {
+      "main": [
+        [
+          {
+            "node": "Monta resposta da consulta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Monta resposta da consulta": {
+      "main": [
+        [
+          {
+            "node": "Responde consulta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deve responder?": {
+      "main": [
+        [
+          {
+            "node": "Responde / pede esclarecimento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qual comando?": {
+      "main": [
+        [
+          {
+            "node": "Destino do relatório",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Destino do alerta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Envia ajuda",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Destino do relatório": {
+      "main": [
+        [
+          {
+            "node": "Ler Produtos (relatório)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ler Produtos (relatório)": {
+      "main": [
+        [
+          {
+            "node": "Ler Histórico (relatório)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ler Histórico (relatório)": {
+      "main": [
+        [
+          {
+            "node": "Monta relatório",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Monta relatório": {
+      "main": [
+        [
+          {
+            "node": "Envia relatório",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envia relatório": {
+      "main": [
+        [
+          {
+            "node": "É o relatório semanal?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É o relatório semanal?": {
+      "main": [
+        [
+          {
+            "node": "Linha do relatório",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linha do relatório": {
+      "main": [
+        [
+          {
+            "node": "Salva em Relatorios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Destino do alerta": {
+      "main": [
+        [
+          {
+            "node": "Ler Produtos (alerta)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ler Produtos (alerta)": {
+      "main": [
+        [
+          {
+            "node": "Verifica produtos parados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verifica produtos parados": {
+      "main": [
+        [
+          {
+            "node": "Envia alerta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "saveDataErrorExecution": "all"
+  },
+  "tags": []
+}</script>
+<script>
+(function () {
+  var raw = document.getElementById('wf').textContent;
+  var box = document.getElementById('jsonbox');
+  var aviso = document.getElementById('copiado');
+  box.value = raw;
+  var KEY = 'digitron-plano';
+  var marcados = {};
+  try { marcados = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  document.querySelectorAll('.check input').forEach(function (cb) {
+    if (marcados[cb.id]) cb.checked = true;
+    cb.addEventListener('change', function () {
+      marcados[cb.id] = cb.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(marcados)); } catch (e) {}
+    });
+  });
+
+  document.getElementById('copiar').addEventListener('click', function () {
+    var ok = function () { aviso.textContent = 'Copiado. Agora é só colar no n8n.'; };
+    var falha = function () { box.focus(); box.select(); aviso.textContent = 'Texto selecionado. Use Ctrl+C para copiar.'; };
+    try {
+      navigator.clipboard.writeText(raw).then(ok, falha);
+    } catch (e) { falha(); }
+  });
+})();
+</script>
+
+</body>
+</html>

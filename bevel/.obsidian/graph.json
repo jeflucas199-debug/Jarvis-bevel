@@ -1,0 +1,107 @@
+{
+  "collapse-filter": false,
+  "search": "-path:_arquivo -path:Templates -path:.claude -file:00-Inicio -file:Pendencias -file:CLAUDE -file:Registro-de-Decisoes -file:Divergencias-a-Resolver -path:\"02-Clientes/Clientes.md\"",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:/^Bevel\\.md$/",
+      "color": {
+        "a": 1,
+        "rgb": 16777215
+      }
+    },
+    {
+      "query": "path:01-Empresa",
+      "color": {
+        "a": 1,
+        "rgb": 16020150
+      }
+    },
+    {
+      "query": "path:02-Clientes",
+      "color": {
+        "a": 1,
+        "rgb": 25340
+      }
+    },
+    {
+      "query": "path:03-Produto",
+      "color": {
+        "a": 1,
+        "rgb": 1688497
+      }
+    },
+    {
+      "query": "path:04-Mercado",
+      "color": {
+        "a": 1,
+        "rgb": 16486972
+      }
+    },
+    {
+      "query": "path:05-Comercial",
+      "color": {
+        "a": 1,
+        "rgb": 2282478
+      }
+    },
+    {
+      "query": "path:06-Marketing",
+      "color": {
+        "a": 1,
+        "rgb": 11566335
+      }
+    },
+    {
+      "query": "path:07-Operacao",
+      "color": {
+        "a": 1,
+        "rgb": 4906624
+      }
+    },
+    {
+      "query": "path:08-Decisoes",
+      "color": {
+        "a": 1,
+        "rgb": 16281969
+      }
+    },
+    {
+      "query": "path:09-Reunioes",
+      "color": {
+        "a": 1,
+        "rgb": 13358561
+      }
+    },
+    {
+      "query": "path:10-Financeiro",
+      "color": {
+        "a": 1,
+        "rgb": 16436245
+      }
+    },
+    {
+      "query": "path:11-Juridico",
+      "color": {
+        "a": 1,
+        "rgb": 10741301
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": -0.5,
+  "nodeSizeMultiplier": 1.5,
+  "lineSizeMultiplier": 0.6,
+  "collapse-forces": true,
+  "centerStrength": 0.3,
+  "repelStrength": 12,
+  "linkStrength": 1,
+  "linkDistance": 120,
+  "scale": 0.8229978098652895,
+  "close": true
+}

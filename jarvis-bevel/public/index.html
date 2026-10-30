@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jarvis da Bevel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topo">
+    <div class="marca"><span class="wordmark">bevel</span><span class="produto">Jarvis</span></div>
+    <div class="info">
+      <span id="modelo"></span><span id="custo"></span>
+      <div class="salvos-menu">
+        <button id="botaoSalvos" type="button" class="botao-salvos" aria-expanded="false" title="Notas salvas neste tema">✓ <span id="contaSalvos">0</span></button>
+        <div id="painelSalvos" class="painel-salvos" hidden>
+          <p class="rotulo">Notas salvas neste tema</p>
+          <ul id="listaSalvos" class="lista-salvos"></ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="grade">
+    <aside class="temas">
+      <nav id="listaTemas" class="arvore" aria-label="Temas"></nav>
+      <p class="dica">O tema muda sozinho pelo assunto. Clique para fixar.</p>
+    </aside>
+
+    <section class="centro">
+      <div class="palco">
+        <button id="orbe" class="orbe" aria-label="Segure para falar">
+          <canvas id="holograma" class="holograma" aria-hidden="true"></canvas>
+          <canvas id="esfera" class="esfera" aria-hidden="true"></canvas>
+        </button>
+        <button id="cancelarGravacao" type="button" class="cancelar" hidden>✕ Cancelar gravação <kbd>Esc</kbd></button>
+        <p id="status" class="status">Segure a <kbd>barra de espaço</kbd> ou o círculo e fale</p>
+        <p id="transcricao" class="transcricao"></p>
+        <div id="trilha" class="trilha" hidden></div>
+        <p class="tema-ativo">Tema: <b id="temaAtivo">Geral</b></p>
+      </div>
+
+      <form id="formTexto" class="digitar">
+        <button id="botaoAnexar" type="button" class="secundario anexar" title="Mandar PDF, foto ou texto">📎</button>
+        <button id="botaoModo" type="button" class="secundario modo"></button>
+        <input id="arquivo" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.txt,.md,.csv" multiple hidden />
+        <input id="campoTexto" type="text" placeholder="Ou digite aqui e aperte Enter" autocomplete="off" />
+        <button type="submit" class="primario">Enviar</button>
+      </form>
+      <ul id="anexos" class="anexos" hidden></ul>
+      <div id="soltar" class="soltar" hidden><p>Solte o arquivo aqui<br /><small>PDF, foto ou texto · vai para <b>_arquivo/</b></small></p></div>
+
+      <div id="conversa" class="conversa"></div>
+    </section>
+
+    <aside class="salvos">
+      <p class="rotulo">Voz</p>
+      <div class="voz">
+        <select id="escolhaVoz" aria-label="Voz do Jarvis"></select>
+        <label class="velocidade">Velocidade
+          <input id="velocidade" type="range" min="0.8" max="1.5" step="0.05" />
+        </label>
+        <button id="testarVoz" type="button" class="secundario">🔊 Testar voz</button>
+      </div>
+      <p class="rotulo">Visual</p>
+      <div class="visual-escolha" role="group" aria-label="Visual do Jarvis">
+        <button type="button" data-visual="holograma">🧠 Holograma</button>
+        <button type="button" data-visual="esfera">🌐 Esfera</button>
+      </div>
+      <p class="rotulo progresso-rotulo">Caminho desta resposta</p>
+      <ul id="progresso" class="progresso"></ul>
+    </aside>
+  </main>
+
+  <div id="aviso" class="aviso" role="status" hidden></div>
+  <script src="holograma.js"></script>
+  <script src="esfera.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

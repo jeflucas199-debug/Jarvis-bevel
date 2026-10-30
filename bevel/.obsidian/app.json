@@ -1,0 +1,11 @@
+{
+  "alwaysUpdateLinks": true,
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": false,
+  "attachmentFolderPath": "_arquivo",
+  "newFileLocation": "current",
+  "showUnsupportedFiles": true,
+  "userIgnoreFilters": [
+    ".claude/"
+  ]
+}

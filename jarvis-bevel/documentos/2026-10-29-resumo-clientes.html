@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Resumo dos clientes · 29/10/2026 · Bevel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #020b1e; --azul: #0062fc; --azul-escrita: #4895f6; --tinta: #161618;
+    --gelo: #e4ebf7; --mudo: #566074; --borda: #d3dcec; --branco: #fff;
+  }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; background: #c9d3e6; color: var(--tinta); font: 400 14px/1.6 Inter, system-ui, sans-serif; }
+  h1, h2, h3 { font-family: "Plus Jakarta Sans", Inter, sans-serif; letter-spacing: -0.03em; line-height: 1.1; }
+
+  /* Barra de ações (some na impressão) */
+  .barra { position: sticky; top: 0; z-index: 2; display: flex; justify-content: center; gap: 12px; padding: 12px; background: var(--navy); }
+  .barra button { font: 600 14px Inter, sans-serif; color: #fff; background: var(--azul); border: 0; border-radius: 12px; padding: 10px 18px; cursor: pointer; }
+  .barra span { color: #b9c8e6; font-size: 13px; align-self: center; }
+
+  /* Página A4 */
+  .pagina { width: 210mm; min-height: 297mm; margin: 24px auto; background: var(--branco); box-shadow: 0 10px 40px rgba(2, 11, 30, 0.25); }
+  .capa {
+    padding: 22mm 18mm 16mm; color: #fff;
+    background:
+      radial-gradient(55% 80% at 90% 20%, rgba(0, 98, 252, 0.55), transparent 70%),
+      linear-gradient(135deg, #010d21 0%, #021d55 55%, #0a42c8 100%);
+  }
+  .capa .logo { height: 34px; display: block; margin-bottom: 18mm; }
+  .capa .rotulo { color: #bfd6ff; }
+  .capa h1 { font-size: 38px; font-weight: 800; margin: 8px 0 10px; }
+  .capa p { color: #cbd9f2; margin: 0; max-width: 140mm; }
+  main { padding: 12mm 18mm 18mm; }
+  .rotulo { font: 600 11px Inter, sans-serif; text-transform: uppercase; letter-spacing: 0.16em; color: var(--azul); }
+
+  .secao { margin: 0 0 10mm; break-inside: avoid-page; }
+  .secao h2 { font-size: 20px; font-weight: 800; margin: 4px 0 10px; }
+  .secao h3 { font-size: 15px; font-weight: 700; margin: 14px 0 6px; }
+  p { margin: 0 0 8px; }
+
+  .numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(38mm, 1fr)); gap: 10px; margin: 0 0 10mm; }
+  .numero { background: var(--gelo); border-radius: 20px; padding: 14px 16px; }
+  .numero b { display: block; font: 800 26px "Plus Jakarta Sans", sans-serif; letter-spacing: -0.03em; color: var(--azul); }
+  .numero span { color: var(--mudo); font-size: 12px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead th { text-align: left; font: 600 10.5px Inter, sans-serif; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mudo); background: var(--gelo); padding: 8px 10px; }
+  tbody td { padding: 8px 10px; border-bottom: 1px solid var(--borda); vertical-align: top; }
+  tbody tr { break-inside: avoid; }
+
+  .cartoes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cartao { border: 1px solid var(--borda); border-radius: 24px; padding: 14px 16px; break-inside: avoid; }
+  .cartao h3 { margin-top: 0; }
+
+  .etiqueta { display: inline-block; font: 600 11px Inter, sans-serif; border-radius: 999px; padding: 2px 9px; background: var(--gelo); color: var(--azul); white-space: nowrap; }
+  .etiqueta.verde { background: #dff5e7; color: #17663a; }
+  .etiqueta.amarela { background: #fff3cf; color: #7a5600; }
+  .etiqueta.vermelha { background: #fde2e2; color: #9b1c1c; }
+  .nota { border-left: 4px solid var(--azul); background: var(--gelo); border-radius: 0 12px 12px 0; padding: 10px 14px; color: var(--tinta); }
+
+  .rodape { display: flex; justify-content: space-between; padding: 0 18mm 12mm; color: var(--mudo); font-size: 11px; }
+  .rodape b { color: var(--tinta); }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: #fff; }
+    .barra { display: none; }
+    .pagina { margin: 0; box-shadow: none; width: auto; min-height: auto; }
+  }
+</style>
+</head>
+<body>
+  <div class="barra">
+    <button onclick="window.print()">Salvar em PDF</button>
+    <span>Na janela que abrir, escolha <b>Salvar como PDF</b> em "Destino".</span>
+  </div>
+
+  <div class="pagina">
+    <header class="capa">
+      <img class="logo" src="marca/bevel-logo-claro.svg" alt="bevel SYSTEMS" />
+      <div class="rotulo">Documento interno · 29/10/2026</div>
+      <h1>Nossos clientes, até agora</h1>
+      <p>Tudo o que a Bevel tem registrado sobre cada cliente fechado e cada negociação aberta: o que é, quanto vale, onde está e o que falta.</p>
+    </header>
+
+    <main>
+      <div class="numeros">
+        <div class="numero"><b>2</b><span>Clientes fechados</span></div>
+        <div class="numero"><b>7</b><span>Em negociação</span></div>
+        <div class="numero"><b>3</b><span>Propostas enviadas (EQUIVET, Escolinha, XÁ)</span></div>
+        <div class="numero"><b>R$ 357,50</b><span>Receita recebida (MRR R$ 0)</span></div>
+      </div>
+
+      <section class="secao">
+        <div class="rotulo">Visão geral</div>
+        <h2>Onde cada um está</h2>
+        <table>
+          <thead><tr><th>Cliente</th><th>O que é</th><th>Valor</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><b>Morais Barbershop</b> (Gabe)</td><td>Chatbot de atendimento e agendamento no WhatsApp</td><td>Contrato R$ 1.190 (parcelas somam R$ 1.430)</td><td><span class="etiqueta vermelha">Cancelou</span></td></tr>
+            <tr><td><b>Interativos</b> (Júnior)</td><td>Assistente de obra: controle de gastos por áudio</td><td>Sem preço · CRM estima R$ 2.500</td><td><span class="etiqueta amarela">Stand-by</span></td></tr>
+            <tr><td><b>EQUIVET</b></td><td>Pedidos de medicamentos do grupo de WhatsApp do hospital</td><td>R$ 3.499 + R$ 419,88/mês</td><td><span class="etiqueta">Proposta enviada</span></td></tr>
+            <tr><td><b>Escolinha do Furacão</b> (Tafarel)</td><td>Atendimento, convocações e mensalidades no WhatsApp</td><td>R$ 4.000 + R$ 480/mês</td><td><span class="etiqueta">Proposta enviada</span></td></tr>
+            <tr><td><b>Ortech</b> (Augusto)</td><td>Contabilidade: WhatsApp + CRM com triagem por IA (Fase 1 de 3)</td><td>CRM estima R$ 30.000</td><td><span class="etiqueta amarela">Diagnóstico feito</span></td></tr>
+            <tr><td><b>Digitron</b> (Donato)</td><td>Fábrica de balanças: controle de expedição no WhatsApp</td><td>CRM estima R$ 7.500</td><td><span class="etiqueta amarela">Projeto em montagem</span></td></tr>
+            <tr><td><b>XÁ</b></td><td>App de vídeos para criança hospitalizada</td><td>"A definir" · CRM diz R$ 10.000</td><td><span class="etiqueta">Proposta enviada</span></td></tr>
+            <tr><td><b>Muzão</b></td><td>Chatbot de agendamento para clínica veterinária</td><td>Plano 2: R$ 2.499</td><td><span class="etiqueta vermelha">Sem desfecho</span></td></tr>
+            <tr><td><b>Empresa de engenharia</b></td><td>Automação de orçamentos (hoje em várias planilhas)</td><td>—</td><td><span class="etiqueta vermelha">Sem contato</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="secao">
+        <div class="rotulo">Fechados</div>
+        <h2>Clientes que já fecharam</h2>
+        <div class="cartoes">
+          <div class="cartao">
+            <h3>Morais Barbershop · Gabe</h3>
+            <p>Barbearia em Curitiba, veio por indicação. Bot de atendimento e agendamento 24h <b>no ar desde 06/10</b>. Contrato assinado: "Chatbot Padrão", R$ 1.190. Já pagou 2 × R$ 178,75. Faltam 3 × R$ 357,50 (20/10, 20/11 e 20/12).</p>
+            <p><span class="etiqueta vermelha">Cancelou</span> O Gabe vai fechar a barbearia e sair do Brasil em dezembro, então não haverá mensalidade.</p>
+            <p><b>Próximo:</b> ele combinou pagar 1 parcela + 1 mensalidade em <b>30/10</b> (valor da mensalidade a confirmar: R$ 119 ou R$ 143). Falta confirmar se isso quita tudo e quando o bot sai do ar. O 1º pagamento caiu na conta pessoal do Arthur e precisa ser regularizado.</p>
+          </div>
+          <div class="cartao">
+            <h3>Interativos · Júnior</h3>
+            <p>Construtora. Dor: paga material na obra, esquece de lançar e perde o controle do gasto por obra. Fechado em 10/09, <b>sem contrato e sem preço</b>. O protótipo foi entregue em 16/10 e está em teste.</p>
+            <p><span class="etiqueta amarela">Stand-by</span> O dono está viajando. Pedido em aberto: relatório direto no WhatsApp, sob pedido (tarefa do VT, venceu em 14/10).</p>
+            <p><b>Próximo:</b> fechar preço e contrato, e pedir as apresentações prometidas a mais de 10 donos de construtora, com data.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao">
+        <div class="rotulo">Em negociação</div>
+        <h2>Propostas enviadas</h2>
+        <div class="cartoes">
+          <div class="cartao">
+            <h3>EQUIVET</h3>
+            <p>Hospital veterinário 24h, indicação da Malu. Hoje os pedidos de remédio se perdem no grupo de WhatsApp ou são comprados duas vezes. Solução: ler o grupo, montar a planilha de pedidos, avisar repetidos e mandar a lista do dia.</p>
+            <p><b>Proposta (20/10):</b> Plano 1 R$ 3.499 + R$ 419,88/mês · Plano 2 (com estoque) R$ 4.299 + R$ 515,88/mês. <b>Vence em 03/11.</b></p>
+            <p><b>Próximo:</b> não há retorno registrado desde 21/10. Falar direto com quem decide; a Monika volta no início de novembro. Ainda faltam: condições do contrato, nota fiscal (sem CNPJ) e orçamento do Totem, que ficou fora da proposta.</p>
+          </div>
+          <div class="cartao">
+            <h3>Escolinha do Furacão · Tafarel</h3>
+            <p>Cerca de 140 alunos. O WhatsApp está sobrecarregado com matrícula, aula experimental, dúvidas dos pais, convocação de jogos e Pix. Um bot anterior não deu certo.</p>
+            <p><b>Proposta do Zé (28/10):</b> Plano 1 R$ 4.000 + R$ 480/mês · Plano 2 R$ 7.000 + R$ 840/mês. <b>Vence em 12/11.</b></p>
+            <p><b>Próximo:</b> reunião de revisão com o Tafarel <b>hoje, 29/10</b>. Pontos a acertar: o que fazer se o JOGA não tiver API, o número do WhatsApp (risco de bloqueio), a entrada e a fidelidade.</p>
+          </div>
+          <div class="cartao">
+            <h3>XÁ</h3>
+            <p>Artista de Curitiba, indicação do Rodolfo. App de vídeos para criança hospitalizada, com lançamento previsto para jan/fev 2027. Aceito como exceção ao nicho.</p>
+            <p><b>Proposta (05/10):</b> PDF + vídeo, com valor "a definir". O CRM registra R$ 10.000.</p>
+            <p><b>Próximo:</b> follow-up do Lucas (aguardando o cliente), NDA, e contrato + 1ª parcela antes de começar a produzir.</p>
+          </div>
+          <div class="cartao">
+            <h3>Muzão</h3>
+            <p>Clínica veterinária da família. Prefere o Plano 2 (R$ 2.499), no cartão em 6–7x ou com 35% de entrada. Quem decide é o padrasto.</p>
+            <p><b>Próximo:</b> sem notícia desde a reunião de 17/09. Vale um follow-up ou passar para parados.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao">
+        <div class="rotulo">Em negociação</div>
+        <h2>Projetos em montagem</h2>
+        <div class="cartoes">
+          <div class="cartao">
+            <h3>Ortech · Augusto Piano</h3>
+            <p>Escritório de contabilidade em Curitiba com mais de 40 anos, cerca de 300 clientes e 18 usuários. O atendimento no WhatsApp de hoje (Komunic) não faz triagem. Pedem WhatsApp + CRM com triagem por IA (Fase 1), um agente interno (Fase 2) e um portal para os clientes (Fase 3).</p>
+            <p><b>Diagnóstico em 27/10.</b> O CRM estima R$ 30.000; quem aprova o valor é o pai.</p>
+            <p><b>Próximo:</b> roadmap do Du e projeto até 04/11, e reunião no início de novembro. Em aberto: a Fase 1 começa pela infraestrutura (como pede o briefing deles) ou pelo CRM? Também há mais de 500 certificados digitais que exigem segurança.</p>
+          </div>
+          <div class="cartao">
+            <h3>Digitron · Donato</h3>
+            <p>Fabricante de balanças de Curitiba, desde 1997, do nicho industrial. Ideia: controle de expedição no WhatsApp (cadastro da OS por foto, status por áudio, alerta de produto parado e relatório semanal).</p>
+            <p><b>Valor:</b> CRM estima R$ 7.500.</p>
+            <p><b>Próximo:</b> a estruturação do projeto (VT + Arthur) foi adiada para <b>10/11</b>, e a proposta só sai depois disso. Falta registrar o que saiu da reunião de 10/10 e guardar a carta de apresentação final.</p>
+          </div>
+          <div class="cartao">
+            <h3>Empresa de engenharia</h3>
+            <p>Contato do Vitor. Hoje faz orçamento em várias planilhas. Engenharia é um subnicho de alto valor.</p>
+            <p><b>Próximo:</b> o Vitor passar o contato (pendente desde 24/09).</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao">
+        <div class="rotulo">Mais frios</div>
+        <h2>Leads soltos e parados</h2>
+        <p><b>Leads soltos:</b> Jean Imperium · Bolino · Instituto Câmara Lopes · Whindersson · Joalheria Bia · Radar LinkedIn.</p>
+        <p><b>Parados ou perdidos:</b> Puppy Stop · Mu · Jacon.</p>
+        <p><b>Prospecção do nicho:</b> 61 construtoras mapeadas. Até hoje, 100% dos clientes vieram de indicação pessoal.</p>
+      </section>
+
+      <section class="secao">
+        <div class="nota"><b>Atenção:</b> a lista geral de clientes no cofre está desatualizada desde 09/10. Ela ainda mostra a Morais em produção e os valores antigos da Escolinha. Este resumo usa as notas de cada cliente, atualizadas até 29/10. Valores marcados como "CRM estima" são estimativas, não propostas.</div>
+      </section>
+    </main>
+
+    <footer class="rodape"><span>Fonte: segundo cérebro da Bevel (notas de 02-Clientes, dados até 29/10/2026) · gerado pelo Jarvis</span><span><b>Você e a Bevel.</b></span></footer>
+  </div>
+</body>
+</html>

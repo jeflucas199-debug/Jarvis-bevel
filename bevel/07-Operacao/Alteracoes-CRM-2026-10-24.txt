@@ -1,0 +1,27 @@
+ALTERAÇÕES CRM — anotações do Lucas (24/10/2026)
+
+1. Contrato gerado direto na agenda
+2. Não precisar dar F5 para cair uma info
+3. Filtro para atividades de cada um – métrica de atividade
+4. Colocar quem criou a atividade
+5. Na agenda, já deixar vinculado ao clicar no WhatsApp
+6. Prazo – mais uma aba
+7. Criar uma aba interna da Bevel para tarefas da empresa
+8. Filtrar por clientes nas tarefas
+9. Depois de preencher o forms, tem que ir pro WhatsApp direto
+10. Formulário pós-venda para contrato
+11. Criar mais uma aba Docs para integrar o Google Drive no CRM
+12. Mudar o formulário para cair no nosso número (está indo para outro número)
+13. Na aba Prospectar, ter uma parte de limpar busca
+14. Todos os leads que virarem realmente lead saem da aba Prospectar e vão de fato para a aba Leads
+15. Deixar mais precisa a busca do lead no Prospectar
+16. Tirar vendedor responsável
+17. Botão extra de mensalidade para criação do lead
+18. Agendar reunião de diagnóstico e reunião de proposta / reunião de alinhamento
+19. Reunião: ao agendar, colocar mais uma aba, não obrigatória, de tema da reunião
+20. Prazo das tarefas com hora, além da data (pedido em 25/10/2026, fora das anotações originais)
+
+Novos da ata da reunião de sócios (feita pelo Du, 25/10/2026):
+21. Aba Tarefas: coluna "Atrasado" — a tarefa muda para ela sozinha quando o prazo passa
+22. Campo de metas da empresa (quais metas e período a definir)
+23. Botão para transformar lead em cliente, sem cadastrar de novo

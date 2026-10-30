@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Reunião 08/10 — Nicho e Processo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --bg:#f3f5fb;
+    --surface:#ffffff;
+    --fg:#0a1120;
+    --muted:#5b6577;
+    --accent:#1e6bff;
+    --accent-2:#1a8f7f;
+    --border:#dde2ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#03060d;
+      --surface:#0b1220;
+      --fg:#eef1f8;
+      --muted:#99a3ba;
+      --accent:#4c8dff;
+      --accent-2:#5fd3c4;
+      --border:#1c2436;
+      color-scheme:dark;
+    }
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0; padding:0}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding:28px 18px 48px;
+    -webkit-text-size-adjust:100%;
+  }
+  h1,h2,h3{font-family:'Manrope', sans-serif; margin:0}
+  .mono{font-family:'IBM Plex Mono', monospace}
+
+  .page{max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:44px}
+
+  header{display:flex; flex-direction:column; gap:10px}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.75rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  h1{font-size:1.9rem; font-weight:800; line-height:1.18}
+  .lede{color:var(--muted); font-size:.98rem; max-width:60ch; line-height:1.55; margin:0}
+
+  section{display:flex; flex-direction:column; gap:18px}
+  .section-head{display:flex; flex-direction:column; gap:4px; border-bottom:1px solid var(--border); padding-bottom:12px}
+  .section-head .eyebrow{color:var(--accent-2)}
+  h2{font-size:1.3rem; font-weight:700}
+  .section-head .meta{color:var(--muted); font-size:.82rem}
+
+  p{line-height:1.6; max-width:65ch; margin:0}
+  .lead-p{font-size:1rem}
+
+  .stats{display:flex; flex-direction:column; gap:12px}
+  .stat{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:14px 16px;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .stat .num{font-family:'IBM Plex Mono', monospace; font-size:1.3rem; font-weight:600; color:var(--accent)}
+  .stat .label{font-size:.82rem; color:var(--muted); line-height:1.4}
+
+  .niches{display:flex; flex-direction:column; gap:12px}
+  .niche{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:14px 16px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .niche .tag{font-family:'IBM Plex Mono', monospace; font-size:.68rem; color:var(--accent-2); text-transform:uppercase; letter-spacing:.06em}
+  .niche h3{font-size:1rem; font-weight:700}
+  .niche p{font-size:.86rem; color:var(--muted)}
+
+  .origin{
+    display:flex; gap:12px; align-items:flex-start;
+    background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent);
+    border-radius:8px; padding:14px 16px;
+  }
+  .origin .icon{font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:var(--accent); flex-shrink:0; padding-top:2px}
+  .origin p{font-size:.9rem}
+
+  .flow{display:flex; flex-direction:column; gap:0; counter-reset:step}
+  .step{
+    display:grid; grid-template-columns:32px 1fr; gap:12px;
+    position:relative; padding-bottom:20px;
+  }
+  .step:last-child{padding-bottom:0}
+  .step::before{
+    counter-increment:step; content:counter(step);
+    width:32px; height:32px; border-radius:50%;
+    background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:.85rem;
+    z-index:1; flex-shrink:0;
+  }
+  .step:not(:last-child)::after{
+    content:''; position:absolute; left:15px; top:32px; bottom:-4px; width:2px;
+    background:var(--border);
+  }
+  .step .content{display:flex; flex-direction:column; gap:4px; padding-top:3px}
+  .step h3{font-size:.96rem; font-weight:700}
+  .step p{font-size:.86rem; color:var(--muted)}
+  .step .who{font-family:'IBM Plex Mono', monospace; font-size:.7rem; color:var(--accent); text-transform:uppercase; letter-spacing:.05em}
+
+  h3.sub{font-size:.96rem; font-weight:700; margin-top:4px}
+
+  .rules{display:flex; flex-direction:column; gap:10px}
+  .rule{
+    display:flex; gap:10px; align-items:baseline;
+    background:var(--surface); border:1px solid var(--border); border-radius:8px;
+    padding:11px 13px;
+  }
+  .rule .no{font-family:'IBM Plex Mono', monospace; color:#c0392b; font-size:.78rem; flex-shrink:0}
+  .rule .yes{font-family:'IBM Plex Mono', monospace; color:var(--accent-2); font-size:.78rem; flex-shrink:0}
+  .rule p{font-size:.88rem}
+
+  footer{
+    border-top:1px solid var(--border); padding-top:18px;
+    display:flex; flex-direction:column; gap:6px;
+    color:var(--muted); font-size:.8rem;
+  }
+  footer .mono{font-size:.76rem}
+
+  img{max-width:100%}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="eyebrow">Bevel Systems — 08/10/2026</div>
+    <h1>Duas reuniões, um dia: nicho, preço e processo de venda</h1>
+    <p class="lede">Resumo das duas atas registradas no Segundo Cérebro — a reunião de estratégia/nicho e a reunião de mentoria/processo. As atas completas, com timestamp de cada ponto, estão salvas na mesma pasta.</p>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <div class="eyebrow">Reunião 1</div>
+      <h2>Estratégia e nicho</h2>
+      <div class="meta">tldv 6ac834d56b60a10013521e3a</div>
+    </div>
+
+    <p class="lead-p">O time reconheceu estar num limbo entre aceitar qualquer projeto e nichar de verdade — orçamento de marketing limitado não dá pra sustentar as duas coisas ao mesmo tempo. A saída: oficializar um terceiro nicho.</p>
+
+    <div class="niches">
+      <div class="niche">
+        <div class="tag">Nicho 01</div>
+        <h3>Construção civil</h3>
+        <p>Origem do foco da empresa. Júnior Freitas é a prova de conceito.</p>
+      </div>
+      <div class="niche">
+        <div class="tag">Nicho 02</div>
+        <h3>Imobiliário</h3>
+        <p>Qualificação de lead do Instagram, filtro de cliente, CRM.</p>
+      </div>
+      <div class="niche">
+        <div class="tag">Nicho 03 — novo</div>
+        <h3>Industrial / manufatureiro</h3>
+        <p>Reencaixa a Digitron no foco oficial — ela não é mais "fora do nicho".</p>
+      </div>
+    </div>
+
+    <div class="origin">
+      <div class="icon">origem</div>
+      <p>A oportunidade de construção civil nasceu porque a <strong>Construtora Interativos, do Júnior Freitas, é a empresa do padrasto do Vitor.</strong> Isso explica por que o MVP foi entregue como teste, sem contrato assinado — era risco aceito entre família, não estratégia comercial fria.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">R$ 12.000</div>
+        <div class="label">investidos pela imobiliária V6 em telemarketing com IA — inteligência competitiva levantada na reunião</div>
+      </div>
+      <div class="stat">
+        <div class="num">0</div>
+        <div class="label">vendas frias até agora — todo cliente atual veio de parceria ou indicação</div>
+      </div>
+      <div class="stat">
+        <div class="num">1000+</div>
+        <div class="label">ligações simultâneas que ferramentas de telemarketing por IA já fazem no mercado</div>
+      </div>
+    </div>
+
+    <p>Oportunidade em aberto: <strong>nenhuma ferramenta de IA pra prospecção ativa foi encontrada ainda no mercado imobiliário de Curitiba/PR.</strong> Gap específico, pode complementar a automação de WhatsApp que a Bevel já tem pronta.</p>
+
+    <p>Projeto de expansão da <strong>Donato</strong> — neto do dono da Digitron, não um lead novo — aparece como chance de sair de projeto pequeno pra capacidade empresarial maior. Reunião marcada pra <strong>10/10</strong>.</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="eyebrow">Reunião 2</div>
+      <h2>Mentoria e processo de venda</h2>
+      <div class="meta">tldv 6ac83c736b60a10013521e4d</div>
+    </div>
+
+    <p class="lead-p">Reunião de processo com um consultor externo. O recado central: parar de vender agressivo sem padrão, e construir o processo primeiro — com meta explícita de validar em <strong>5 clientes</strong> antes de acelerar.</p>
+
+    <h3 class="sub">O novo modelo de venda em duas reuniões</h3>
+    <div class="flow">
+      <div class="step">
+        <div class="content">
+          <div class="who">Reunião 1 · conduz Vitor</div>
+          <h3>Entender e construir relação</h3>
+          <p>Foco 100% em entender a necessidade do cliente. Não é pra fechar nada aqui. Time comparece em maior número que o cliente, pra passar força.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="content">
+          <div class="who">Reunião 2 · fecha Lucas (sócio, LC)</div>
+          <h3>Proposta, preço e fechamento</h3>
+          <p>Lucas entra só na segunda — de propósito, pra manter o papel de quem fecha o negócio, sem desgastar a relação na primeira conversa.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub">Regras de posicionamento</h3>
+    <div class="rules">
+      <div class="rule">
+        <span class="no">evitar</span>
+        <p>A palavra <strong>"IA"</strong> na conversa comercial.</p>
+      </div>
+      <div class="rule">
+        <span class="yes">usar</span>
+        <p><strong>"Automação"</strong> e <strong>"otimização de processo"</strong> no lugar.</p>
+      </div>
+      <div class="rule">
+        <span class="no">evitar</span>
+        <p>Vender "resposta automática" como diferencial.</p>
+      </div>
+      <div class="rule">
+        <span class="yes">usar</span>
+        <p><strong>Velocidade e personalização</strong> como o argumento central.</p>
+      </div>
+    </div>
+
+    <p>Cadência combinada: reunião com <strong>Lucas Folador</strong> (mentor externo, ajuda de graça) a cada <strong>15 dias</strong>, com agenda estruturada e tempo entre sessões pra aplicar o que foi combinado. Prioridade imediata: estruturar processo de venda e marketing antes de qualquer meta agressiva.</p>
+
+    <div class="origin">
+      <div class="icon">sinal</div>
+      <p><strong>Du demonstrou perfil ideal de SDR</strong> na reunião — boa escuta, raciocínio lógico. Não é mudança de função decidida, só uma observação do mentor, mas pode pesar na sobreposição em aberto entre Arthur e Du em conteúdo.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div>Atas completas salvas na mesma pasta:</div>
+    <div class="mono">2026-10-08 - Ata Reunião Sócios (Estratégia e Nicho).md</div>
+    <div class="mono">2026-10-08 - Ata Reunião Mentoria e Processos.md</div>
+    <div>Cofre atualizado: Vendas e Prospecção, Decisões, Financeiro, Marketing e Conteúdo, Júnior Freitas, Automações.</div>
+  </footer>
+
+</div>
+</body>
+</html>
